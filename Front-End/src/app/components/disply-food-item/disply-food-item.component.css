@@ -1,0 +1,7 @@
+.container {
+    margin-top: 150px;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
+  }

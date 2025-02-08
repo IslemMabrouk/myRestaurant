@@ -1,0 +1,76 @@
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Billing details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form action="#">
+                    <div class="row g-5">
+                        <div class="col-md-12 col-lg-6 col-xl-7">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div style="display: flex; justify-content: space-between; gap: 20px;">
+                                        <mat-form-field appearance="outline" class="w-100 mb-3" style="flex: 1;">
+                                            <mat-label>First Name</mat-label>
+                                            <input matInput placeholder="Enter your name">
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="w-100 mb-3" style="flex: 1;">
+                                            <mat-label>Last Name</mat-label>
+                                            <input matInput placeholder="Enter your last name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                <mat-label>Address</mat-label>
+                                <input matInput placeholder="House Number Street Name">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                <mat-label>Mobile</mat-label>
+                                <input matInput placeholder="Enter your mobile number">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                <mat-label>Email Address</mat-label>
+                                <input matInput placeholder="Enter your email">
+                            </mat-form-field>
+                            <div class="row g-4 text-center align-items-center justify-content-center pt-4">
+                                <button mat-raised-button color="primary" class="w-100 order_btn">Place Order</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-5">
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                                    <ng-container matColumnDef="product">
+                                        <mat-header-cell *matHeaderCellDef> Products </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <img src="assets/img/food_item/food_item_2.png"   style="width: 80px; height: 60px;" alt="">
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="price">
+                                        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.price | currency}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="quantity">
+                                        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="total">
+                                        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.total | currency}} </mat-cell>
+                                    </ng-container>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

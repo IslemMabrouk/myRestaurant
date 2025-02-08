@@ -1,0 +1,27 @@
+<mat-card class="mat-elevation-z4 chef-card">
+    <!-- Chef Image -->
+    <img [src]="chef.img" mat-card-image alt="{{ chef.chefName }}">
+  
+    <!-- Card Content -->
+    <mat-card-content>
+      <h3>{{ chef.chefName }}</h3>
+      <p>{{ chef.chefSpeciality }}</p>
+  
+      <!-- Social Media Icons -->
+      <div class="social-icons">
+        <a mat-icon-button href="#" aria-label="Facebook">
+          <mat-icon>facebook</mat-icon>
+        </a>
+        <a mat-icon-button href="#" aria-label="Twitter">
+          <mat-icon>twitter</mat-icon>
+        </a>
+        <a mat-icon-button href="#" aria-label="Instagram">
+          <mat-icon>instagram</mat-icon>
+        </a>
+        <a mat-icon-button href="#" aria-label="Skype">
+          <mat-icon>skype</mat-icon>
+        </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

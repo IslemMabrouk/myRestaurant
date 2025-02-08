@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="centered">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <mat-card>
+          <a href="#">
+            <img mat-card-image src="assets/img/food_item/food_item_2.png"  alt="Image">
+          </a>
+        </mat-card>
+      </div>
+      <div class="col-lg-6">
+        <mat-card>
+          <mat-card-title>
+            <h4 class="fw-bold">Broccoli</h4>
+          </mat-card-title>
+          <mat-card-content>
+            <p>Category: Vegetables</p>
+            <h5 class="fw-bold">3,35 $</h5>
+            <div class="d-flex mb-4">
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star_half</mat-icon>
+            </div>
+            <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
+              words etc.</p>
+            <p>Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish,
+              pencilfish snailfish</p>
+            <div class="input-group quantity mb-5">
+              <button mat-icon-button>
+                <mat-icon>remove</mat-icon>
+              </button>
+              <input matInput type="text" value="1" readonly>
+              <button mat-icon-button>
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <button mat-raised-button color="primary" class="btn" (click)="goToCkeckout()">Add to cart</button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <mat-tab-group>
+      <mat-tab label="Description">
+        <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
+          words etc.
+          Susp endisse ultricies nisi vel quam suscipit </p>
+        <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish filefish Antarctic
+          icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish, electric ray sweeper.</p>
+
+      </mat-tab>
+      <mat-tab label="Reviews">
+        <app-review></app-review>
+      </mat-tab>
+
+    </mat-tab-group>
+
+    <app-comments></app-comments>
+
+  </div>
+</div>

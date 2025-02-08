@@ -1,0 +1,18 @@
+  <!--::chefs_part start::-->
+  <section class="chefs_part blog_item_section section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="section_tittle">
+                    <h2>Our Experience Chefs</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3" *ngFor="let chef of chefs">
+                <app-chef-info [chef]="chef"></app-chef-info>
+            </div>
+        </div>
+    </div>
+</section>
+<!--::chefs_part end::-->

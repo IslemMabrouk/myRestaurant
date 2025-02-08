@@ -1,0 +1,30 @@
+/* Cart Icon */
+.cart-icon {
+    color: white;
+    font-size: 20px;
+    position: relative;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.cart-icon:hover {
+    color: #f4c10f;
+}
+
+/* Optional Badge for Items in Cart */
+.cart-icon::after {
+    content: "3"; /* Example number of items in the cart */
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

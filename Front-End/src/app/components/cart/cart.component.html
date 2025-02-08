@@ -1,0 +1,110 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <!-- Cart Items -->
+        <mat-card class="mb-4">
+          <mat-card-header>
+            <mat-card-title>Cart - 2 items</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <!-- Single Item -->
+            <div class="row mb-4">
+              <div class="col-lg-3 col-md-12">
+                <!-- Image -->
+                <div class="image-container">
+                  <img  src="assets/img/food_item/food_item_2.png" 
+                       class="w-100" alt="Blue Jeans Jacket" />
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-6">
+                <!-- Details -->
+                <h5>Blue denim shirt</h5>
+                <p>Color: blue</p>
+                <p>Size: M</p>
+                <!-- Buttons -->
+                <button mat-raised-button color="primary" class="small-button me-2" aria-label="Remove item">
+                  <mat-icon class="icon">delete</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" class="small-button" aria-label="Move to wish list">
+                  <mat-icon class="icon">favorite</mat-icon>
+                </button>                
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <!-- Quantity -->
+                <div class="quantity-container d-flex align-items-center">
+                  <button mat-mini-fab color="primary" (click)="decreaseQuantity(items)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <mat-form-field appearance="outline" class="quantity-input">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput type="number" [value]="1" min="0" />
+                  </mat-form-field>
+                  <button mat-mini-fab color="primary" (click)="increaseQuantity(items)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+                <!-- Price -->
+                <p class="text-start"><strong>$17.99</strong></p>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <!-- Repeat for more items -->
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Shipping Info -->
+        <mat-card class="mb-4">
+          <mat-card-content>
+            <p><strong>Expected shipping delivery:</strong></p>
+            <p class="mb-0">12.10.2020 - 14.10.2020</p>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Payment Methods -->
+        <mat-card>
+          <mat-card-content>
+            <p><strong>We accept:</strong></p>
+            <div class="payment-icons">
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa" />
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express" />
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard" />
+              <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp" alt="PayPal" />
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Summary -->
+      <div class="col-md-4">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>SUMMARY</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Order</span>
+                <span>$53.98</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Shipping</span>
+                <span>Gratis</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <div>
+                  <strong>Total amount</strong>
+                  <p class="mb-0">(including VAT)</p>
+                </div>
+                <strong>$53.98</strong>
+              </li>
+            </ul>
+            <button mat-raised-button color="primary" class="w-100 mt-3" (click)="goToCkeckout()">
+              GO TO CHECKOUT
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

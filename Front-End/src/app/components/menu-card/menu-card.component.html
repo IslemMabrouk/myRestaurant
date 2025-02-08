@@ -1,0 +1,18 @@
+<mat-card class="menu-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img [src]="item.image" alt="{{ item.name }}" class="avatar" />
+    </div>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="assets/img/food_item/food_item_1.png" alt="" />
+  <mat-card-content>
+    <p>Price: ${{ item.price }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="goToDetails()">
+      Show details
+    </button>
+  </mat-card-actions>
+</mat-card>

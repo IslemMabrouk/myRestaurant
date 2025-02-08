@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+.error-msg {
+    color: red;
+    font-size: smaller;
+}
+
+/* styles.css */
+
+/* Change the background color to off-white */
+body {
+    background-color: #f6f5f1;  /* Off-white color */
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* You can add global styles to this file, and also import other style files */
+
+  
+  .nav-link.active {
+    background-color: #007bff;
+    color: white !important;
+  }
+  
+  body {
+    background-color: #f8f9fa;
+  }
+  
+  .card {
+    border-radius: 15px;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(90deg, #1e90ff, #00c6ff);
+  }
+  
+  .bg-gradient-success {
+    background: linear-gradient(90deg, #28a745, #6abf69);
+  }
+  
+  .bg-gradient-warning {
+    background: linear-gradient(90deg, #ffc107, #ffdd57);
+  }
+  
+  .bg-gradient-danger {
+    background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  }
+  
+  .list-group-item {
+    border: none;
+    background-color: #f8f9fa;
+  }
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  .bg-primary {
+    background: linear-gradient(90deg, #1e90ff, #00c6ff); /* Matches dashboard card colors */
+  }
+  body.dark-mode {
+    background-color: #343a40; /* Dark mode background */
+    color: #ffffff; /* Text color */
+  }
+  
+  body.dark-mode .bg-primary {
+    background: linear-gradient(90deg, #2c3e50, #4a69bd); /* Dark gradient */
+  }
+  
+  body.dark-mode .card {
+    background-color: #495057; /* Dark card background */
+    color: #ffffff;
+  }
+  
+  body.dark-mode .nav-link {
+    color: #adb5bd;
+  }
+  
+  body.dark-mode .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  body.dark-mode .btn-outline-light {
+    border-color: #adb5bd;
+    color: #adb5bd;
+  }
+  
+  body.dark-mode .btn-outline-light:hover {
+    background-color: #adb5bd;
+    color: #2c3e50;
+  }
+
+  /* Default mat-card styles */
+mat-card {
+  background-color: #ffffff; /* Light mode background */
+  color: #000000; /* Light mode text color */
+}
+
+/* Dark mode mat-card styles */
+body.dark-mode mat-card {
+  background-color: #495057; /* Dark mode background for cards */
+  color: #ffffff; /* Text color for dark mode */
+}
+
+/* Optional: Add shadow effects for mat-card in dark mode */
+body.dark-mode mat-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Adjust shadow for dark mode */
+}
+
+body.dark-mode table.mat-table {
+  background-color: #495057; /* Dark mode table background */
+  color: #ffffff; /* Text color */
+}
+
+body.dark-mode table.mat-table th, 
+body.dark-mode table.mat-table td {
+  border-color: #6c757d; /* Adjust border color */
+  color: #f8f9fa; /* Header text color */
+}
+
+
+body.dark-mode table.mat-table th {
+  background-color: #343a40; /* Header row background */
+  color: #f8f9fa; /* Header text color */
+}
+
+body.dark-mode .mat-elevation-z8 {
+  box-shadow: none; /* Remove elevation for a flat look in dark mode */
+}
+
+/* Dark mode styles for mat-toolbar */
+body.dark-mode mat-toolbar.navbar {
+  background-color: #343a40; /* Dark background color */
+  color: #f8f9fa; /* Text color for dark mode */
+  border-bottom: 1px solid #495057; /* Optional border for separation */
+}
+
+/* Dark mode styles for .best-seller */
+body.dark-mode .best-seller {
+  background-color: #732929; /* Darker red background for dark mode */
+  color: #f8d7da; /* Light text color for contrast */
+}
+
+/* Adjust button and icon colors */
+body.dark-mode mat-toolbar.navbar button.mat-icon-button {
+  color: #f8f9fa; /* Icon button color */
+}
+
+body.dark-mode mat-toolbar.navbar button.mat-icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
+}
+
+/* Adjust brand text color */
+body.dark-mode mat-toolbar.navbar .navbar-brand {
+  color: #f8f9fa; /* Brand text color */
+}
+
+/* Dark mode styles for .best-seller */
+body.dark-mode .best-seller {
+  background-color: #732929; /* Darker red background for dark mode */
+  color: #f8d7da; /* Light text color for contrast */
+}

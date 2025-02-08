@@ -1,0 +1,15 @@
+.food_menu{
+    padding: 50px;
+    margin-top: 70px;
+}
+.mat-tab-group{
+gap: 2rem;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
+  }
+
+  :host ::ng-deep .mat-tab-labels {
+    justify-content: center !important;
+}
