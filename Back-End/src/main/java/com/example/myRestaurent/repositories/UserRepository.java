@@ -8,7 +8,7 @@ import com.example.myRestaurent.models.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, Long> {
 	
-	@Query("SELECT u FROM User u WHERE u.email = :email")
+	@Query("SELECT u FROM UserModel u WHERE u.email = :email")
 	 UserModel findUserByEmail(@Param("email") String email);
 
 }
