@@ -11,11 +11,11 @@
       <div class="col-lg-6">
         <mat-card>
           <mat-card-title>
-            <h4 class="fw-bold">Broccoli</h4>
+            <h2 class="fw-bold fw-uppercase">{{plat.name}}</h2>
           </mat-card-title>
           <mat-card-content>
-            <p>Category: Vegetables</p>
-            <h5 class="fw-bold">3,35 $</h5>
+            <p class="fw-uppercase">Category: <span class="fw-bold">{{plat.category}}</span > </p>
+            <h4 class="fw-bold">{{plat.price}} $</h4>
             <div class="d-flex mb-4">
               <mat-icon>star</mat-icon>
               <mat-icon>star</mat-icon>
@@ -23,20 +23,22 @@
               <mat-icon>star</mat-icon>
               <mat-icon>star_half</mat-icon>
             </div>
-            <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
-              words etc.</p>
-            <p>Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish,
-              pencilfish snailfish</p>
-            <div class="input-group quantity mb-5">
-              <button mat-icon-button>
+            <p>{{plat.description}}</p>
+            <div class="quantity-wrapper">
+              <button mat-icon-button color="primary" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
                 <mat-icon>remove</mat-icon>
               </button>
-              <input matInput type="text" value="1" readonly>
-              <button mat-icon-button>
+            
+              <mat-form-field appearance="outline" style="width: 60px; text-align: center;">
+                <input matInput type="number" [(ngModel)]="quantity" [min]="1" readonly>
+              </mat-form-field>
+            
+              <button mat-icon-button color="primary" (click)="increaseQuantity()">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
-            <button mat-raised-button color="primary" class="btn" (click)="goToCkeckout()">Add to cart</button>
+            
+            <button mat-raised-button color="primary" class="btn" (click)="goToCheckout()">Add to cart</button>
           </mat-card-content>
         </mat-card>
       </div>

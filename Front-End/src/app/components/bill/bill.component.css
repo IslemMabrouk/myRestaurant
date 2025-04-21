@@ -2,9 +2,16 @@
     margin-top: 80px;
 }
 
-.w-100 {
-    width: 650px !important;
-}
 .order_btn {
     margin-left: 20px;
+}
+
+.mat-elevation-z8 {
+    box-shadow: none !important;
+}
+
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type,
+.mat-cell, .mat-header-cell,  .mat-footer-cell {
+    padding: .5rem;
+    width: 5rem;
 }

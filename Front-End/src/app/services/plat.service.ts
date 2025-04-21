@@ -17,7 +17,7 @@ export class PlatService {
     return this.httpClient.get<{ plats: Plat[] }>(this.platURL);  // Ensure this matches the response structure
   }
 
-  getPlatById(id: number) {
+  getPlatById(id: any) {
     return this.httpClient.get(this.platURL + "/" + id);
   }
 

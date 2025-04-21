@@ -23,7 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { CartComponent } from './components/cart/cart.component';
 import { MatDividerModule } from '@angular/material/divider';
@@ -41,7 +41,9 @@ import { LandingComponent } from './components/landing/landing.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CommentsComponent } from './components/comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ToastrModule } from 'ngx-toastr';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,10 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardModule,
     MatSidenavModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule ,
+    MatTooltipModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

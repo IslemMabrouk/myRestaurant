@@ -38,8 +38,11 @@ public class UserServiceImpl implements UserService {
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setEmail(user.getEmail());
-        // Add other fields as necessary
-
+        existingUser.setPwd(user.getPwd());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setAddress(user.getAddress());
+        existingUser.setExperience(user.getExperience());
+        
         return uRepo.save(existingUser);
     }
 	

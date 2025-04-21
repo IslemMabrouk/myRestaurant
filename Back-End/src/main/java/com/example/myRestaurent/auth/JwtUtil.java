@@ -47,6 +47,7 @@ public class JwtUtil {
 		claims.put("firstName", user.getFirstName());
 		claims.put("lastName", user.getLastName());
 		claims.put("email", user.getEmail());
+		claims.put("id", user.getId());
 
 		// Extraire les noms des rôles de l'user
 		List<String> roleNames = user.getRoles().stream().map(RoleModel::getName) // Assurez-vous que Role a un getName()

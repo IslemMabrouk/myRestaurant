@@ -4,4 +4,10 @@
 
 :host ::ng-deep .mat-tab-body-content {
     overflow: hidden !important;
-  }
+}
+
+.quantity-wrapper {
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+}

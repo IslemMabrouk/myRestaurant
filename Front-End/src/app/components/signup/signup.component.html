@@ -5,7 +5,7 @@
         <div class="card-body">
           <!-- Title -->
           <div class="mb-4">
-            <h3 class="font-weight-bold text-left">Sign Up</h3>
+            <h3 class="font-weight-bold text-left">{{title}}</h3>
           </div>
           <!-- Signup Form -->
           <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
@@ -46,6 +46,16 @@
                   Invalid email address
                 </mat-error>
               </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" required>
+                <mat-error *ngIf="signupForm.get('address')?.hasError('required')">
+                  address is required
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('address')?.hasError('address')">
+                  Invalid address
+                </mat-error>
+              </mat-form-field>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -80,11 +90,11 @@
               <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Phone</mat-label>
                 <span matPrefix>+216&nbsp;</span>
-                <input matInput type="tel" formControlName="tel" placeholder="55 555 555" required>
-                <mat-error *ngIf="signupForm.get('tel')?.hasError('required')">
+                <input matInput type="tel" formControlName="phone" placeholder="55 555 555" required>
+                <mat-error *ngIf="signupForm.get('phone')?.hasError('required')">
                   Phone number is required
                 </mat-error>
-                <mat-error *ngIf="signupForm.get('tel')?.hasError('minlength') || signupForm.get('tel')?.hasError('maxlength')">
+                <mat-error *ngIf="signupForm.get('phone')?.hasError('minlength') || signupForm.get('phone')?.hasError('maxlength')">
                   Phone number must be between 8 and 13 digits
                 </mat-error>
               </mat-form-field>
@@ -95,14 +105,14 @@
                 class="btn btn-primary btn-block w-50" 
                 [disabled]="signupForm.invalid"
                 [ngClass]="{ 'btn-disabled': signupForm.invalid }">
-                Sign Up
+                {{title}}
               </button>
             </div>
           </form>
           <!-- Already have an account -->
-          <div class="text-center mt-3">
+          <div class="text-center mt-3" *ngIf="!userId">
             <span>Already have an account? 
-              <a routerLink="/login" class="text-primary" style="text-decoration: underline;">Log in</a>
+              <a routerLink="/signin" class="text-primary" style="text-decoration: underline;">Log in</a>
             </span>
           </div>
         </div>

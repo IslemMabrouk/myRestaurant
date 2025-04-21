@@ -5,25 +5,24 @@
         <!-- Cart Items -->
         <mat-card class="mb-4">
           <mat-card-header>
-            <mat-card-title>Cart - 2 items</mat-card-title>
+            <mat-card-title>Cart - {{ getTotalQuantity() }} items</mat-card-title>
           </mat-card-header>
-          <mat-card-content>
+          <mat-card-content *ngFor="let item of items">
             <!-- Single Item -->
             <div class="row mb-4">
               <div class="col-lg-3 col-md-12">
                 <!-- Image -->
                 <div class="image-container">
                   <img  src="assets/img/food_item/food_item_2.png" 
-                       class="w-100" alt="Blue Jeans Jacket" />
+                       class="w-100" alt="Food Item" />
                 </div>
               </div>
               <div class="col-lg-5 col-md-6">
                 <!-- Details -->
-                <h5>Blue denim shirt</h5>
-                <p>Color: blue</p>
-                <p>Size: M</p>
+                <h5 class="fw-bold fw-uppercase">{{item.plat.name}}</h5>
+                <p>{{item.plat.category}}</p>
                 <!-- Buttons -->
-                <button mat-raised-button color="primary" class="small-button me-2" aria-label="Remove item">
+                <button mat-raised-button color="primary" class="small-button me-2" aria-label="Remove item" (click)="removeItemById(item.plat.id)">
                   <mat-icon class="icon">delete</mat-icon>
                 </button>
                 <button mat-raised-button color="warn" class="small-button" aria-label="Move to wish list">
@@ -33,19 +32,19 @@
               <div class="col-lg-4 col-md-6">
                 <!-- Quantity -->
                 <div class="quantity-container d-flex align-items-center">
-                  <button mat-mini-fab color="primary" (click)="decreaseQuantity(items)">
+                  <button mat-mini-fab color="primary" (click)="decreaseQuantity(item)">
                     <mat-icon>remove</mat-icon>
                   </button>
                   <mat-form-field appearance="outline" class="quantity-input">
                     <mat-label>Quantity</mat-label>
-                    <input matInput type="number" [value]="1" min="0" />
+                    <input matInput type="number" [value]="item.quantity" min="1" />
                   </mat-form-field>
-                  <button mat-mini-fab color="primary" (click)="increaseQuantity(items)">
+                  <button mat-mini-fab color="primary" (click)="increaseQuantity(item)">
                     <mat-icon>add</mat-icon>
                   </button>
                 </div>
                 <!-- Price -->
-                <p class="text-start"><strong>$17.99</strong></p>
+                <p class="text-start"><strong>{{item.plat.price * item.quantity | currency}}</strong></p>
               </div>
             </div>
             <mat-divider></mat-divider>
@@ -57,7 +56,7 @@
         <mat-card class="mb-4">
           <mat-card-content>
             <p><strong>Expected shipping delivery:</strong></p>
-            <p class="mb-0">12.10.2020 - 14.10.2020</p>
+            <p class="mb-0">30-40 min</p>
           </mat-card-content>
         </mat-card>
 
@@ -73,6 +72,7 @@
             </div>
           </mat-card-content>
         </mat-card>
+
       </div>
 
       <!-- Summary -->
@@ -85,18 +85,18 @@
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between">
                 <span>Order</span>
-                <span>$53.98</span>
+                <span>{{calculateTotalPrice() | currency}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between">
                 <span>Shipping</span>
-                <span>Gratis</span>
+                <span [ngStyle]="{color:shipping()[1]}">{{shipping()[0]}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between">
                 <div>
                   <strong>Total amount</strong>
-                  <p class="mb-0">(including VAT)</p>
+                  <p class="mb-0">(including VAT 18%)</p>
                 </div>
-                <strong>$53.98</strong>
+                <strong>{{calculateVATTotalPrice() | currency}}</strong>
               </li>
             </ul>
             <button mat-raised-button color="primary" class="w-100 mt-3" (click)="goToCkeckout()">

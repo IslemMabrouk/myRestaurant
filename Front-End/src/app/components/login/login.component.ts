@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent {
 
   hide = true;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, 
+    private userService: UserService,
+    private authService:AuthService) { }
 
   /**
    * Method to handle login submission
@@ -27,23 +30,29 @@ export class LoginComponent {
     if (this.login.email && this.login.pwd) {
       console.log('Login submitted:', this.login);
   
-    //   this.userService.getUserRole(this.login.email).subscribe(
-    //     (role) => {
-    //       if (role === 'client') {
-    //         this.router.navigate(['/home']); 
-    //       } else if (role === 'chef' || role === 'admin') {
-    //         this.router.navigate(['/dashboard']);  
-    //       } else {
-    //         console.error('Unknown role:', role);
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Error fetching role:', error);
-    //     }
-    //   );
-    // } else {
-    //   console.error('Login form is invalid!');
+      this.userService.login(this.login).subscribe(
+        (res) => {
+          const roles = res.roles;
+  
+          // Optionally store token if needed for future requests
+          this.authService.login(res);
+  
+          if (roles.includes('ROLE_CLIENT')) {
+            this.router.navigate(['']);
+          } else if (roles.includes('ROLE_CHEF') || roles.includes('ROLE_ADMIN')) {
+            this.router.navigate(['/dashboard']);
+          } else {
+            console.error('Unknown role:', roles);
+          }
+        },
+        (error) => {
+          console.error('Login failed:', error);
+        }
+      );
+    } else {
+      console.error('Login form is invalid!');
     }
   }
+  
   
 }

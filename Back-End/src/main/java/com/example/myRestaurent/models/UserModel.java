@@ -28,6 +28,9 @@ public class UserModel {
 	private String lastName;
 	private String email;
 	private String pwd;
+	private Long phone;
+	private String address;
+	private Long experience;
 	// Many-to-many relationship with RoleModel
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(
@@ -41,11 +44,14 @@ public class UserModel {
 		
 	}
 
-	public UserModel(String firstName, String lastName, String email, String pwd, List<RoleModel> roles) {
+	public UserModel(String firstName, String lastName, String email, String pwd, Long phone, String address, Long experience, List<RoleModel> roles) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.pwd = pwd;
+		this.phone = phone; 
+		this.address = address;
+		this.experience = experience;
 		this.roles = roles;
 	}
 
@@ -87,6 +93,30 @@ public class UserModel {
 		this.pwd = pwd;
 	}
 	
+	public Long getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Long phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String adress) {
+		this.address = adress;
+	}
+
+	public Long getExperience() {
+		return experience;
+	}
+
+	public void setExperience(Long experience) {
+		this.experience = experience;
+	}
+
 	public List<RoleModel> getRoles() {
 		return roles;
 	}
@@ -98,9 +128,9 @@ public class UserModel {
 	@Override
 	public String toString() {
 		return "UserModel [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", pwd=" + pwd + "]";
+				+ ", pwd=" + pwd + ", phone=" + phone + ", adress=" + address + ", experience=" + experience + ", roles="
+				+ roles + "]";
 	}
-	
 	
 
 }

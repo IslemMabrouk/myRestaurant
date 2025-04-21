@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Plat } from 'src/app/interfaces/Plat';
 
 @Component({
   selector: 'app-menu-card',
@@ -15,8 +16,8 @@ export class MenuCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToDetails() {
-    this.router.navigate(["foodItem"])
+  goToDetails(platId:Plat) {
+    this.router.navigate([`foodItem/${platId}`])
   }
 
 }

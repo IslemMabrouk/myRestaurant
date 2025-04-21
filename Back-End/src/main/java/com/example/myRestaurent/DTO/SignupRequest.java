@@ -9,6 +9,8 @@ public class SignupRequest {
 	private String email;
 	private String pwd;
 	private Long phone;
+	private String address;
+	private Long experience;
 	private List<String> roles;
 
 	/**
@@ -82,7 +84,35 @@ public class SignupRequest {
 	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
+	
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return address;
+	}
 
+	/**
+	 * @param address the  address to set
+	 */
+	public void setAddress(String adress) {
+		this.address = address;
+	}
+
+	/**
+	 * @return the experience
+	 */
+	public Long getExperience() {
+		return experience;
+	}
+
+	/**
+	 * @param exprience the experience to set
+	 */
+	public void setExperience(Long experience) {
+		this.experience = experience;
+	}
+	
 	/**
 	 * @return the roles
 	 */

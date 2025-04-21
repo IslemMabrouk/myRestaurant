@@ -12,6 +12,7 @@ import { BillComponent } from './components/bill/bill.component';
 import { DisplyFoodItemComponent } from './components/disply-food-item/disply-food-item.component';
 import { FoodMenuComponent } from './components/food-menu/food-menu.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { single } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -19,13 +20,14 @@ const routes: Routes = [
       { path: '', component: LandingComponent },
       { path: "about", component: AboutComponent },
       { path: 'register', component: SignupComponent },
+      { path: 'editProfile/:userId', component: SignupComponent }, // Edit chef
       { path: 'signin', component: LoginComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'chefs', component: ChefsComponent },
       { path: 'chefsTable', component: ChefsTableComponent },
       { path: 'cart', component: CartComponent },
       { path: 'bill', component: BillComponent },
-      { path: 'foodItem', component: DisplyFoodItemComponent },
+      { path: 'foodItem/:platId', component: DisplyFoodItemComponent },
       { path: 'foodMenu', component: FoodMenuComponent },
     ]
   },
