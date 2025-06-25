@@ -1,0 +1,38 @@
+.items,
+.status {
+  margin-bottom: 0 !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+mat-chip {
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+mat-chip.status {
+  display: flex;
+  justify-content: center;
+  height: 24px;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.chip-warning {
+  background-color: #ffc107 !important;
+  color: black !important;
+  cursor: pointer;
+}
+
+.chip-success {
+  background-color: #28a745 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+td.mat-cell {
+    padding: .5rem;
+ }

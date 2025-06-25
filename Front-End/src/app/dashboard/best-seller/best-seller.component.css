@@ -1,0 +1,26 @@
+/* Highlight rows where sales > 100 */
+.best-seller {
+  background-color: #fff0f0; /* Light blue background for best sellers */
+  color: #333; /* Text color */
+}
+
+/* Header background and font styling */
+.mat-header-cell {
+  font-weight: bold;
+}
+
+/* Table row borders */
+.mat-row {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Optional: Styling for table responsiveness */
+.table-responsive {
+  overflow-x: auto;
+}
+
+tr.mat-row:first-child {
+  background-color: #ffebee;
+  color: #b71c1c;    
+  font-weight: bold;
+}

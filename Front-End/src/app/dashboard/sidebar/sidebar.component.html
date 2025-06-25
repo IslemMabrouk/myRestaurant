@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container bg-primary text-white" style="height: 100vh;">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav bg-primary text-white" style="width: 250px;">
+    <!-- Header with Admin Panel and Toggle -->
+    <div class="d-flex align-items-center justify-content-between mb-3 text-white adminPanel">
+      <span class="fs-4">Admin Panel</span>
+      <mat-slide-toggle
+        class="text-white"
+        color="accent"
+        (change)="toggleDarkMode($event.checked)">
+      </mat-slide-toggle>
+    </div>
+    <mat-divider class="bg-white"></mat-divider>
+
+    <!-- Navigation List -->
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/dashboard'" class="text-white w-100 btn">
+          <mat-icon class="me-2">show_chart</mat-icon> Dashboard
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/usersTable'" class="text-white w-100 btn">
+          <mat-icon class="me-2">groups</mat-icon> Users
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/ordersTable'" class="text-white w-100 btn">
+          <mat-icon class="me-2">receipt_long</mat-icon> Orders
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/platsTable'" class="text-white w-100 btn">
+          <mat-icon class="me-2">restaurant_menu</mat-icon> Plats
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/bestSeller'" class="text-white w-100 btn">
+          <mat-icon class="me-2">trending_up</mat-icon> Best Seller
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <mat-divider class="bg-white"></mat-divider>
+  </mat-sidenav>
+</mat-sidenav-container>

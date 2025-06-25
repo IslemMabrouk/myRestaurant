@@ -1,0 +1,27 @@
+
+
+/* Optional: Style the card for a polished look */
+.mat-card {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Add some spacing to the form fields */
+.mat-form-field {
+    margin-bottom: 15px;
+}
+
+/* Center-align the submit button */
+.btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Disable button style */
+.btn-disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed;
+    color: #ffffff;
+}

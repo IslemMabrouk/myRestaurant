@@ -1,0 +1,5 @@
+.mat-raised-button.mat-primary{
+    color: rgba(0, 0, 0, .87);
+    padding: .5em 1em;
+    background-color: transparent !important;
+}

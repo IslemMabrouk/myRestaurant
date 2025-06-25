@@ -1,0 +1,32 @@
+<mat-toolbar class="navbar d-flex justify-content-between align-items-center">
+  <a mat-button class="navbar-brand text-black"><strong>DASHBOARD ADMIN</strong></a>
+
+  <div class="d-flex align-items-center">
+
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+      {{userInfo.firstName}}
+      <mat-icon class="user-icon">account_circle</mat-icon>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <mat-menu #userMenu="matMenu" class="user-menu">
+
+      <div class="user-info" style="padding: 16px 24px; max-width: 250px;">
+        <div><strong>{{userInfo.firstName}} {{userInfo.lastName}}</strong></div>
+        <div style="font-size: 0.85em; color: gray;">{{userInfo.email}}</div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <button mat-menu-item (click)="editProfile()">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+
+      <button mat-menu-item color="warn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+
+    </mat-menu>
+  </div>
+</mat-toolbar>
