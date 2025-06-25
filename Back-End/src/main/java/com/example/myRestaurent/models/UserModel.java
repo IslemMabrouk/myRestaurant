@@ -1,6 +1,11 @@
 package com.example.myRestaurent.models;
 
+import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 
@@ -14,8 +19,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.JoinColumn;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "users")
 public class UserModel {
@@ -31,6 +39,13 @@ public class UserModel {
 	private Long phone;
 	private String address;
 	private Long experience;
+	@Column(nullable = false)
+	private boolean active = true;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", updatable = false)
+	private Date createdAt;
 	// Many-to-many relationship with RoleModel
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(
@@ -117,6 +132,23 @@ public class UserModel {
 		this.experience = experience;
 	}
 
+	public boolean isActive() {
+	    return active;
+	}
+
+	public void setActive(boolean active) {
+	    this.active = active;
+	}
+
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public List<RoleModel> getRoles() {
 		return roles;
 	}
@@ -124,7 +156,7 @@ public class UserModel {
 	public void setRoles(List<RoleModel> roles) {
 		this.roles = roles;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "UserModel [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email

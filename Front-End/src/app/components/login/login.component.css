@@ -1,7 +1,32 @@
 .btn-disabled {
-    background-color: #d6d6d6; /* Light gray color */
-    border-color: #d6d6d6;    /* Matching border color */
-    color: #7a7a7a;           /* Gray text color */
-    cursor: not-allowed;      /* Change the cursor to show it's disabled */
-  }
-  
+  background-color: #d6d6d6;
+  /* Light gray color */
+  border-color: #d6d6d6;
+  /* Matching border color */
+  color: #7a7a7a;
+  /* Gray text color */
+  cursor: not-allowed;
+  /* Change the cursor to show it's disabled */
+}
+
+.errorMsg {
+  color: red;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+mat-card {
+  padding: 3rem !important;
+}
+
+mat-card-title {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: underline;
+  color: #ff6426 !important;
+  text-transform: uppercase;
+}

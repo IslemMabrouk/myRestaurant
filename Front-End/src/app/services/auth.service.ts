@@ -13,7 +13,7 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  
+
   constructor() {
     const user = localStorage.getItem('token');
     this.isLoggedInSubject.next(!!user);
@@ -23,7 +23,7 @@ export class AuthService {
     localStorage.setItem('token', res.token);
     this.isLoggedInSubject.next(true);
   }
-  
+
   logout() {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
@@ -32,7 +32,7 @@ export class AuthService {
   getDecodedToken(): any | null {
     const token = localStorage.getItem('token');
     if (!token) return null;
-  
+
     try {
       const decoded: any = jwtDecode(token);
       const currentTime = Math.floor(Date.now() / 1000);
@@ -46,17 +46,18 @@ export class AuthService {
       return null;
     }
   }
-  
+
   getUserId(): string | null {
     const decoded = this.getDecodedToken();
-    return decoded?.id ?? null;
-  }  
+    return decoded?.userId ?? null;
+  }
+
 
   getUserInfo(): User | null {
     const decoded = this.getDecodedToken();
-  
+
     return decoded ? {
-      id: decoded.id,
+      id: decoded.userId, // <-- ici aussi !
       firstName: decoded.firstName,
       lastName: decoded.lastName,
       email: decoded.email,
@@ -64,6 +65,7 @@ export class AuthService {
       phone: decoded.phone,
       address: decoded.address
     } : null;
+
   }
 
 }

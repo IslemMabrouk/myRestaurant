@@ -6,9 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.myRestaurent.models.OrderItemModel;
 import com.example.myRestaurent.models.OrderModel;
+import com.example.myRestaurent.models.UserModel;
 import com.example.myRestaurent.repositories.OrderRepository;
 import com.example.myRestaurent.services.OrderService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class OrderServiceImpl  implements OrderService {
@@ -16,10 +20,18 @@ public class OrderServiceImpl  implements OrderService {
 	private OrderRepository oRepo;
 	
 	@Override
-	public OrderModel addOrder(OrderModel obj) {
-		
-		return oRepo.save(obj);
+	public OrderModel addOrder(OrderModel order) {
+	    if (order.getItems() != null) {
+	        for (OrderItemModel item : order.getItems()) {
+	            item.setOrder(order);
+	        }
+	    }
+	    return oRepo.save(order);
 	}
+
+	public OrderModel save(OrderModel order) {
+        return oRepo.save(order);
+    }
 	
 	@Override
 	public OrderModel updateOrder(OrderModel obj) {
@@ -29,21 +41,32 @@ public class OrderServiceImpl  implements OrderService {
 	
 	@Override
 	public List<OrderModel> getAllOrders() {
-		
-		return oRepo.findAll();
+		return oRepo.findByActiveTrue();
+	}
+	
+	@Override
+	public Optional<OrderModel> findById(Long id) {
+	    return oRepo.findById(id);
 	}
 
 	@Override
 	public OrderModel findOrderById(Long id) {
-		
-		Optional<OrderModel> o = oRepo.findById(id);
-		return o.isPresent() ? o.get():null;
+
+		Optional<OrderModel> u = oRepo.findById(id);
+		return u.isPresent() ? u.get() : null;
 	}
+	
+	public List<OrderModel> getOrdersByUserId(Long userId) {
+	    return oRepo.findByUserId(userId);
+	}
+
 	
 	@Override
 	public void deleteOrderById(Long id) {
-		
-		oRepo.deleteById(id);
+	    OrderModel order = oRepo.findById(id)
+	            .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
+	    
+	    order.setActive(false);
+	    oRepo.save(order);
 	}
-
 }

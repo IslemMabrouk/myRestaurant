@@ -1,9 +1,9 @@
-<mat-card class="menu-card">
+<!-- <mat-card class="menu-card">
   <mat-card-header>
-    <div mat-card-avatar>
-      <img [src]="item.image" alt="{{ item.name }}" class="avatar" />
+    <div mat-card-avatar class="avatar-icon">
+      <mat-icon style="font-size: 1rem;">restaurant</mat-icon>
     </div>
-    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-title style="text-transform: uppercase;">{{ item.name }}</mat-card-title>
     <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="assets/img/food_item/food_item_1.png" alt="" />
@@ -15,4 +15,22 @@
       Show details
     </button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
+
+<div id="menu" class="menu-item">
+  <img src="assets/img/food_item/food_item_1.png" alt="{{ item.name }}" id="menu-img">
+  
+  <div class="menu-content">
+    <a href="#">{{ item.name }}</a>
+    <span>{{ item.price }} DT</span>
+  </div>
+  
+  <div class="menu-ingredients">
+    {{ item.description }}
+  </div>
+   <a matTooltip="Show details" matTooltipPosition="right" (click)="goToDetails(item.id)" class="btn_3">
+  <img src="assets/img/icon/left_2.svg" alt="">
+</a>
+
+
+</div>

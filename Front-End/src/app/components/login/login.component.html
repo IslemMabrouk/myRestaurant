@@ -1,50 +1,72 @@
 <div class="row justify-content-center align-items-center vh-100">
-    <!-- Left Column: Login Form -->
-    <div class="col-lg-5 col-md-8">
+  <!-- Left Column: Login Form in mat-card -->
+  <div class="col-lg-5 col-md-8">
+    <mat-card class="p-4">
+      <mat-card-header>
+        <mat-card-title>
+          <h3 class="font-weight-bold text-left m-0">Login</h3>
+        </mat-card-title>
+      </mat-card-header>
 
-        <div class="card-body">
-          <!-- Title -->
-          <div class="mb-4">
-            <h3 class="font-weight-bold text-left">Login</h3>
+      <mat-card-content>
+        <form #loginForm="ngForm" (ngSubmit)="logIn()">
+          <div class="mb-3">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                [(ngModel)]="login.email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+            </mat-form-field>
           </div>
-          <!-- Login Form -->
-          <form #loginForm="ngForm" (ngSubmit)="logIn()">
-            <div class="mb-3">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="login.email" name="email" type="email" placeholder="Enter your email" required>
-              </mat-form-field>
-            </div>
-            <div class="mb-3">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput [(ngModel)]="login.pwd" name="pwd" [type]="hide ? 'password' : 'text'" placeholder="Enter your password" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div class="text-center">
-              <button 
-                type="submit" 
-                class="btn btn-primary btn-block w-50" 
-                [disabled]="loginForm.invalid"
-                [ngClass]="{ 'btn-disabled': loginForm.invalid }">
-                Login
+
+          <div class="mb-3">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [(ngModel)]="login.pwd"
+                name="pwd"
+                [type]="hide ? 'password' : 'text'"
+                placeholder="Enter your password"
+                required
+              />
+              <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
+            </mat-form-field>
+
+            <div *ngIf="errorMsg" class="errorMsg text-danger mt-1">
+              {{ errorMsg }}
             </div>
-          </form>
-          <!-- No account yet -->
-          <div class="text-center mt-3">
-            <span>Don't have an account? 
-              <a routerLink="/register" class="text-primary" style="text-decoration: underline;">Sign Up</a>
-            </span>
           </div>
-      </div>
-    </div>
-    <!-- Right Column: Image -->
-    <div class="col-lg-5 d-none d-lg-block text-center">
-      <img src="assets/img/about.png" alt="Login Image" class="img-fluid rounded">
-    </div>
+
+          <div class="text-center">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              class="w-50"
+              [disabled]="loginForm.invalid"
+              [ngClass]="{ 'btn-disabled': loginForm.invalid }"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+
+        <!-- No account yet -->
+        <div class="text-center mt-3">
+          <span>
+            Don't have an account?
+            <a routerLink="/register" class="text-primary" style="text-decoration: underline;">Sign Up</a>
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+</div>

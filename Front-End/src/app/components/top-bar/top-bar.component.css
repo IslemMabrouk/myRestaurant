@@ -1,0 +1,10 @@
+i {
+    color: #ff6426;
+}
+.topbar-left span {
+    color: white;
+}
+.topbar-left{
+    display: flex;
+    gap: 10px;
+}

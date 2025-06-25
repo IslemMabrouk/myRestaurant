@@ -1,17 +1,47 @@
-.menu-tab .menu-item mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+#menu-img {
+  width: 80px !important;
+  border-radius: 50% !important;
+  float: left !important;
+  border: 8px solid color-mix(in srgb, #ff6426, transparent 90%) !important;
+}
 
- .menu-card:hover {
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-  }
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+}
 
-  mat-card-subtitle {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.menu-content::after {
+  content:"..............................................................." ".............................................................";
+  position: absolute;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 60%);
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.menu-content a,
+.menu-content span {
+  color: black !important;
+    background: var(--background-color);
+    z-index: 1 !important;
+    padding: 0 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.menu-content a:hover {
+  color: rgb(255, 100, 38) !important;
+}
+
+
+.menu-ingredients {
+  margin-left: 95px;
+  font-style: italic;
+  font-size: 14px;
+  font-family: var(--nav-font);
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+}

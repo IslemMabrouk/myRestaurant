@@ -1,0 +1,80 @@
+/* Cart Icon */
+.cart-icon mat-icon {
+    color: #f4c10f;
+    font-size: 1.7rem;
+    position: relative;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.isConnected {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.user-menu-button {
+    text-transform: none;
+    /* so the user name is not uppercased */
+    font-weight: 600;
+}
+
+.user-info {
+    pointer-events: none;
+    /* user info is not clickable */
+    user-select: none;
+}
+
+.mat-menu-content:not(:empty) {
+    min-width: 15rem !important;
+}
+
+.user-icon {
+    font-size: 25px;
+    color: black;
+}
+
+.menu_btn {
+    display: flex;
+    gap: 10px;
+}
+
+.logo h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 800;
+    color: black;
+}
+
+img {
+    max-width: 10%;
+}
+
+.btn_1 {
+    width: 10rem;
+    text-align: center;
+}
+
+.main-menu-item {
+    padding-right: 0px;
+}
+
+
+.container {
+    background-color: rgb(245 245 245 / 61%);
+}
+
+.container.main_menu.menu_fixed {
+    background-color: #fff;
+}
+
+.background-changed {
+    background-color: #f6f5f1 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 3640px) {
+    .container {
+        max-width: 100%;
+    }
+}

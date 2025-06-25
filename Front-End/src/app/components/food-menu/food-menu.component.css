@@ -1,15 +1,25 @@
-.food_menu{
-    padding: 50px;
-    margin-top: 70px;
+.food_menu {
+  padding: 50px;
+  margin-top: 70px;
 }
-.mat-tab-group{
-gap: 2rem;
+
+.mat-tab-group {
+  gap: 2rem;
 }
 
 :host ::ng-deep .mat-tab-body-content {
-    overflow: hidden !important;
-  }
+  overflow: hidden !important;
+}
 
-  :host ::ng-deep .mat-tab-labels {
-    justify-content: center !important;
+:host ::ng-deep .mat-tab-labels {
+  justify-content: center !important;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #ff6426 !important;
+}
+
+::ng-deep .mat-tab-header {
+    border-bottom: none !important;
 }

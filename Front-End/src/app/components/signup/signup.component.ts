@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
-import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SignupComponent implements OnInit {
   userId: any;
-  title!: String;
   user: User = new User();
   hide = true; // For toggling password visibility
   signupForm!: UntypedFormGroup;
@@ -23,13 +21,9 @@ export class SignupComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private router: Router,
     private userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
-    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
         
     this.userRole = ["ROLE_CLIENT"];
 
@@ -48,36 +42,28 @@ export class SignupComponent implements OnInit {
       }
     );
 
-    if (this.userId) {
-      // Edit mode
-      this.title = 'Edit Profile';
-      const userInfo = this.authService.getUserInfo();
-      this.signupForm = this.formBuilder.group({
-        firstName: [userInfo?.firstName || ''],
-        lastName: [userInfo?.lastName || ''],
-        address: [''],
-        pwd: [''],
-        confirmPwd: [''],
-        phone: [''],
-        email: [userInfo?.email || '']
-      });      
-       
-    } else {
-      // Add mode
-      this.title = 'Sign Up';
-    }
-
   }
 
   // Custom validator to match passwords
-  passwordMatchValidator(form: UntypedFormGroup) {
-    const password = form.get('pwd')?.value;
-    const confirmPwd = form.get('confirmPwd')?.value;
-    if (password !== confirmPwd) {
-      return { passwordsNotMatching: true };
-    }
+passwordMatchValidator(form: UntypedFormGroup) {
+  const passwordControl = form.get('pwd');
+  const confirmPwdControl = form.get('confirmPwd');
+
+  if (!passwordControl || !confirmPwdControl) return null;
+
+  // If other errors exist on confirmPwd, do not overwrite them
+  if (confirmPwdControl.errors && !confirmPwdControl.errors['passwordsNotMatching']) {
     return null;
   }
+
+  if (passwordControl.value !== confirmPwdControl.value) {
+    confirmPwdControl.setErrors({ passwordsNotMatching: true });
+  } else {
+    confirmPwdControl.setErrors(null);
+  }
+
+  return null;
+}
 
   /**
    * Method to handle user signup
@@ -87,6 +73,8 @@ export class SignupComponent implements OnInit {
     
     formValue = { ...this.signupForm.value, roles: this.userRole };
     delete formValue.confirmPwd;
+    console.log(formValue);
+    
 
     this.userService.addUser(formValue).subscribe(
       (data) => {

@@ -95,7 +95,7 @@ public class SignupRequest {
 	/**
 	 * @param address the  address to set
 	 */
-	public void setAddress(String adress) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

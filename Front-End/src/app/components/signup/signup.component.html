@@ -1,126 +1,121 @@
 <div class="row justify-content-center align-items-center vh-100">
-    <!-- Left Column: Signup Form -->
-    <div class="col-lg-5 col-md-8">
+  <!-- Colonne principale centrée -->
+  <div class="col-lg-6 col-md-8">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3 class="font-weight-bold">Sign Up</h3>
+        </mat-card-title>
+      </mat-card-header>
 
-        <div class="card-body">
-          <!-- Title -->
-          <div class="mb-4">
-            <h3 class="font-weight-bold text-left">{{title}}</h3>
+      <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required />
+                <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+                  First name is required
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('firstName')?.hasError('minlength')">
+                  First name must be at least 3 characters long
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required />
+                <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
+                  Last name is required
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('lastName')?.hasError('minlength')">
+                  Last name must be at least 5 characters long
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
-          <!-- Signup Form -->
-          <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>First Name</mat-label>
-                  <input matInput formControlName="firstName" required>
-                  <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
-                    First name is required
-                  </mat-error>
-                  <mat-error *ngIf="signupForm.get('firstName')?.hasError('minlength')">
-                    First name must be at least 3 characters long
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Last Name</mat-label>
-                  <input matInput formControlName="lastName" required>
-                  <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
-                    Last name is required
-                  </mat-error>
-                  <mat-error *ngIf="signupForm.get('lastName')?.hasError('minlength')">
-                    Last name must be at least 5 characters long
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="mb-3">
+
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required placeholder="e.g. user@example.com" />
+            <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+              Invalid email address
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" required />
+            <mat-error *ngIf="signupForm.get('address')?.hasError('required')">
+              Address is required
+            </mat-error>
+          </mat-form-field>
+
+          <div class="row">
+            <div class="col-md-6">
               <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" required placeholder="e.g. user@example.com">
-                <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
-                  Email is required
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="pwd" required />
+                <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="signupForm.get('pwd')?.hasError('required')">
+                  Password is required
                 </mat-error>
-                <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
-                  Invalid email address
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="address" required>
-                <mat-error *ngIf="signupForm.get('address')?.hasError('required')">
-                  address is required
-                </mat-error>
-                <mat-error *ngIf="signupForm.get('address')?.hasError('address')">
-                  Invalid address
+                <mat-error *ngIf="signupForm.get('pwd')?.hasError('minlength')">
+                  Password must be at least 8 characters
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>pwd</mat-label>
-                  <input matInput [type]="hide ? 'pwd' : 'text'" formControlName="pwd" required>
-                  <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                  </button>
-                  <mat-error *ngIf="signupForm.get('pwd')?.hasError('required')">
-                    pwd is required
-                  </mat-error>
-                  <mat-error *ngIf="signupForm.get('pwd')?.hasError('minlength')">
-                    pwd must be at least 8 characters long
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Confirm pwd</mat-label>
-                  <input matInput [type]="hide ? 'pwd' : 'text'" formControlName="confirmPwd" required>
-                  <mat-error *ngIf="signupForm.get('confirmPwd')?.hasError('required')">
-                    Confirmation is required
-                  </mat-error>
-                  <mat-error *ngIf="signupForm.hasError('mustMatch')">
-                    pwds do not match
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="mb-3">
+
+            <div class="col-md-6">
               <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Phone</mat-label>
-                <span matPrefix>+216&nbsp;</span>
-                <input matInput type="tel" formControlName="phone" placeholder="55 555 555" required>
-                <mat-error *ngIf="signupForm.get('phone')?.hasError('required')">
-                  Phone number is required
+                <mat-label>Confirm Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPwd" required />
+                <mat-error *ngIf="signupForm.get('confirmPwd')?.hasError('required')">
+                  Confirmation is required
                 </mat-error>
-                <mat-error *ngIf="signupForm.get('phone')?.hasError('minlength') || signupForm.get('phone')?.hasError('maxlength')">
-                  Phone number must be between 8 and 13 digits
+                <mat-error *ngIf="signupForm.get('confirmPwd')?.hasError('passwordsNotMatching')">
+                  Passwords do not match
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="text-center">
-              <button 
-                type="submit" 
-                class="btn btn-primary btn-block w-50" 
-                [disabled]="signupForm.invalid"
-                [ngClass]="{ 'btn-disabled': signupForm.invalid }">
-                {{title}}
-              </button>
-            </div>
-          </form>
-          <!-- Already have an account -->
-          <div class="text-center mt-3" *ngIf="!userId">
-            <span>Already have an account? 
-              <a routerLink="/signin" class="text-primary" style="text-decoration: underline;">Log in</a>
-            </span>
           </div>
+
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Phone</mat-label>
+            <span matPrefix>+216&nbsp;</span>
+            <input matInput type="tel" formControlName="phone" placeholder="55 555 555" required />
+            <mat-error *ngIf="signupForm.get('phone')?.hasError('required')">
+              Phone number is required
+            </mat-error>
+            <mat-error
+              *ngIf="signupForm.get('phone')?.hasError('minlength') || signupForm.get('phone')?.hasError('maxlength')">
+              Phone number must be between 8 and 13 digits
+            </mat-error>
+          </mat-form-field>
+
+          <div class="text-center mt-3">
+            <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid"
+              [ngClass]="{ 'btn-disabled': signupForm.invalid }">
+              SIGN UP
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center mt-3">
+          <span>
+            Already have an account?
+            <a routerLink="/signin" class="text-primary" style="text-decoration: underline;">Log in</a>
+          </span>
         </div>
-
-    </div>
-    <!-- Right Column: Image -->
-    <div class="col-lg-5 d-none d-lg-block text-center">
-      <img src="assets/img/about.png" alt="Sign Up Image" class="img-fluid rounded">
-    </div>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+</div>

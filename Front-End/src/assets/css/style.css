@@ -234,7 +234,9 @@ a:focus, .button:focus, button:focus, .btn:focus {
 }
 
 /* line 143, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_common.scss */
-
+.section_tittle {
+  margin-bottom: 70px;
+}
 
 @media (max-width: 576px) {
   /* line 143, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_common.scss */
@@ -258,7 +260,12 @@ a:focus, .button:focus, button:focus, .btn:focus {
   }
 }
 
-
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 143, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_common.scss */
+  .section_tittle {
+    margin-bottom: 30px;
+  }
+}
 
 /* line 158, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_common.scss */
 .section_tittle h2 {
@@ -518,7 +525,7 @@ ul {
 .btn_1 {
   display: inline-block;
   padding: 9.5px 28px;
-  border-radius: 50px;
+  border-radius: 20px;
   background-color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -526,6 +533,7 @@ ul {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   text-transform: capitalize;
+  border: 1px solid;
 }
 
 /* line 34, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_button.scss */
@@ -2236,7 +2244,7 @@ ul {
 
 /* line 18, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_menu.scss */
 .main_menu .navbar {
-  padding: 22px 0px;
+  /* padding: 22px 0px; */
 }
 
 /* line 21, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_menu.scss */
@@ -2300,7 +2308,8 @@ ul {
   position: fixed;
   z-index: 9999 !important;
   width: 100%;
-  background-color: #fff;
+  background-color: #f6f5f1;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
   top: 0;
 }
@@ -2494,13 +2503,36 @@ ul {
 /**************** banner part css start ****************/
 /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
 .banner_part {
-  height: 880px;
   position: relative;
-  background-image: url(../img/banner_bg.png);
-  background-repeat: no-repeat;
-  background-size: 41%;
-  background-position: top right;
+  overflow: hidden;
 }
+
+.banner_bg {
+  position: absolute;
+  inset: 0;
+  background-image: url(../img/hero-bg.jpg); /* replace with your image path */
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.banner_bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #000000, transparent 50%);
+  z-index: 2;
+}
+
+.banner_part .container {
+  position: relative;
+  z-index: 3; /* Put content above background and overlay */
+}
+
+.banner_text_iner h1{
+  color: white;
+}
+
 
 @media (max-width: 576px) {
   /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
@@ -2545,7 +2577,7 @@ ul {
   content: "";
   bottom: -50px;
   z-index: -1;
-  background: url(../img/banner_overlay.png) bottom right no-repeat;
+  /* background: url(../img/banner_overlay.png) bottom right no-repeat; */
   right: 19%;
 }
 
@@ -2709,7 +2741,7 @@ ul {
   top: 0px;
   border-radius: 5px;
   z-index: -1;
-  background-color: #2c3033;
+  background-color: white;
   left: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -2724,7 +2756,7 @@ ul {
   bottom: 0px;
   border-radius: 5px;
   z-index: -1;
-  background-color: #2c3033;
+  background-color: white;
   left: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -2761,7 +2793,7 @@ ul {
 /* line 170, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
 .banner_part .banner_text .btn_2 {
   padding: 14px 0px 14px 25px;
-  border-left: 1px solid #2c3033;
+  border-left: 1px solid white;
   position: relative;
 }
 

@@ -11,12 +11,16 @@ import { OrderService } from 'src/app/services/order.service';
 export class HeaderComponent implements OnInit {
   connected = false;
   totalQuantity: number = 0;
+  userInfo:any;
 
   constructor(private authService : AuthService,
     private router: Router,
     private orderService: OrderService) { }
 
   ngOnInit(): void {
+   this.userInfo = this.authService.getUserInfo();
+   console.log(this.userInfo);
+
     this.authService.isLoggedIn$.subscribe((status) => {
       this.connected = status;
     });
@@ -24,10 +28,11 @@ export class HeaderComponent implements OnInit {
     this.orderService.totalQuantity$.subscribe(quantity => {
       this.totalQuantity = quantity;
     });
+
   }
 
   editProfile(){
-    this.router.navigate([`editProfile/${this.authService.getUserId()}`])
+    this.router.navigate([`clientSpace/${this.authService.getUserInfo()?.id}`])
   }
 
   logout() {

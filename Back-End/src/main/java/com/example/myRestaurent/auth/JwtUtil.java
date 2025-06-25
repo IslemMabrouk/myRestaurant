@@ -43,11 +43,12 @@ public class JwtUtil {
 
 	public String createToken1(UserDetails userDetails, UserModel user) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("username", userDetails.getUsername());
+		claims.put("userId", user.getId());
 		claims.put("firstName", user.getFirstName());
 		claims.put("lastName", user.getLastName());
 		claims.put("email", user.getEmail());
-		claims.put("id", user.getId());
+		claims.put("address", user.getAddress());
+		claims.put("phone", user.getPhone());
 
 		// Extraire les noms des rôles de l'user
 		List<String> roleNames = user.getRoles().stream().map(RoleModel::getName) // Assurez-vous que Role a un getName()

@@ -1,0 +1,7 @@
+.banner_part .banner_text {
+    height: 600px !important;
+}
+
+.btn_2, .banner_part .video_popup, .btn_2 img {
+    color: white !important;
+}

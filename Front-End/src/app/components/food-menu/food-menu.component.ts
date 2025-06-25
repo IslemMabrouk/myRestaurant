@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Plat } from 'src/app/interfaces/Plat';
-import { PlatService } from 'src/app/services/plat.service'; // Make sure you import your service
+import { PlatService } from 'src/app/services/plat.service';
 
 @Component({
   selector: 'app-food-menu',
@@ -8,9 +8,9 @@ import { PlatService } from 'src/app/services/plat.service'; // Make sure you im
   styleUrls: ['./food-menu.component.css']
 })
 export class FoodMenuComponent implements OnInit {
-  plats: Plat[] = []; // List of plats from the backend
-  categories = ['Breakfast', 'Lunch', 'Dinner']; // Predefined categories
-  categorizedPlats: { [key: string]: Plat[] } = {}; // A map to categorize plats
+  plats: Plat[] = [];
+  categories = ['All', 'Sandwich', 'Burger', 'Pizza'];
+  categorizedPlats: { [key: string]: Plat[] } = {};
 
   constructor(private platService: PlatService) {}
 
@@ -31,8 +31,12 @@ export class FoodMenuComponent implements OnInit {
   }
 
   categorizePlats(): void {
-    this.categories.forEach(category => {
+  this.categorizedPlats['All'] = this.plats; // All plats
+  this.categories
+    .filter(category => category !== 'All')
+    .forEach(category => {
       this.categorizedPlats[category] = this.plats.filter(plat => plat.category === category);
     });
-  }
+}
+  
 }

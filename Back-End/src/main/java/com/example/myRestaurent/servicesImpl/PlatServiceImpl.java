@@ -6,14 +6,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.myRestaurent.models.OrderItemModel;
 import com.example.myRestaurent.models.PlatModel;
+import com.example.myRestaurent.models.UserModel;
+import com.example.myRestaurent.repositories.OrderItemRepository;
 import com.example.myRestaurent.repositories.PlatRepository;
 import com.example.myRestaurent.services.PlatService;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PlatServiceImpl implements PlatService {
 	@Autowired
 	private PlatRepository pRepo;
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public PlatModel addPlat(PlatModel obj) {
@@ -36,8 +44,7 @@ public class PlatServiceImpl implements PlatService {
 	
 	@Override
 	public List<PlatModel> getAllPlats() {
-		
-		return pRepo.findAll();
+		return pRepo.findByActiveTrue();
 	}
 
 	@Override
@@ -49,8 +56,11 @@ public class PlatServiceImpl implements PlatService {
 	
 	@Override
 	public void deletePlatById(Long id) {
-		
-		pRepo.deleteById(id);
+		PlatModel plat = pRepo.findById(id)
+	            .orElseThrow(() -> new EntityNotFoundException("Plat not found with id " + id));
+	    
+		plat.setActive(false);
+	    pRepo.save(plat); // Save the change (soft delete)
 	}
 
 }

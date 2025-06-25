@@ -13,6 +13,8 @@ import { DisplyFoodItemComponent } from './components/disply-food-item/disply-fo
 import { FoodMenuComponent } from './components/food-menu/food-menu.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { single } from 'rxjs';
+import { ClientSpaceComponent } from './components/client-space/client-space.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -20,7 +22,7 @@ const routes: Routes = [
       { path: '', component: LandingComponent },
       { path: "about", component: AboutComponent },
       { path: 'register', component: SignupComponent },
-      { path: 'editProfile/:userId', component: SignupComponent }, // Edit chef
+      { path: 'editProfile', component: EditProfileComponent },
       { path: 'signin', component: LoginComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'chefs', component: ChefsComponent },
@@ -29,6 +31,7 @@ const routes: Routes = [
       { path: 'bill', component: BillComponent },
       { path: 'foodItem/:platId', component: DisplyFoodItemComponent },
       { path: 'foodMenu', component: FoodMenuComponent },
+      { path: 'clientSpace/:userId', component: ClientSpaceComponent },
     ]
   },
   {

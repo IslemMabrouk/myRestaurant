@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Plat } from 'src/app/interfaces/Plat';
+import { environment } from 'src/environments/environment';
 
 interface CartItem {
   plat: Plat;
@@ -12,13 +14,15 @@ interface CartItem {
 })
 export class OrderService {
 
+  orderURL = environment.BaseUrl + "/api/orders";
+
   private cartKey: string = 'cartItems';
 
   /// Observable for total quantity
   private totalQuantitySubject = new BehaviorSubject<number>(this.getTotalQuantity());
   totalQuantity$ = this.totalQuantitySubject.asObservable(); // You’ll use this in your components
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   // Add item to the cart in localStorage
   addToCart(plat: Plat, quantity: number) {
@@ -50,39 +54,64 @@ export class OrderService {
 
   // order.service.ts
 
-increaseItemQuantity(platId: number) {
-  let cartItems = this.getCartItems();
-  const item = cartItems.find(i => i.plat.id === platId);
-  if (item) {
-    item.quantity++;
+  increaseItemQuantity(platId: number) {
+    let cartItems = this.getCartItems();
+    const item = cartItems.find(i => i.plat.id === platId);
+    if (item) {
+      item.quantity++;
+      localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
+      this.updateTotalQuantity();
+    }
+  }
+
+  decreaseItemQuantity(platId: number) {
+    let cartItems = this.getCartItems();
+    const item = cartItems.find(i => i.plat.id === platId);
+    if (item && item.quantity > 1) {
+      item.quantity--;
+      localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
+      this.updateTotalQuantity();
+    }
+  }
+
+  removeItemById(id: number): void {
+    const cartItems = this.getCartItems().filter(item => item.plat.id !== id);
     localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
     this.updateTotalQuantity();
   }
-}
-
-decreaseItemQuantity(platId: number) {
-  let cartItems = this.getCartItems();
-  const item = cartItems.find(i => i.plat.id === platId);
-  if (item && item.quantity > 1) {
-    item.quantity--;
-    localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
-    this.updateTotalQuantity();
-  }
-}
-
-removeItemById(id: number): void {
-  const cartItems = this.getCartItems().filter(item => item.plat.id !== id);
-  localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
-  this.updateTotalQuantity();
-}
 
   // Clear the cart from localStorage
   clearCart() {
     localStorage.removeItem(this.cartKey);
+     this.totalQuantitySubject.next(0);
   }
 
   private updateTotalQuantity() {
     const total = this.getTotalQuantity();
     this.totalQuantitySubject.next(total); // Notify subscribers
   }
+
+  // Nouvelle méthode pour envoyer la commande
+  placeOrder(orderData: any) {
+    return this.httpClient.post(this.orderURL, orderData);
+  }
+
+  getAllOrders() {
+    return this.httpClient.get(this.orderURL);
+  }
+
+  getOrdersByUserId(userId: number) {
+    return this.httpClient.get<any>(`${this.orderURL}/user/${userId}`);
+  }
+
+  updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+    console.log(`PUT ${this.orderURL}/${orderId}/status`, { status: newStatus });
+
+    return this.httpClient.put(`${this.orderURL}/${orderId}/status`, { status: newStatus });
+  }
+
+    deleteOrderById(id: number) {
+    return this.httpClient.delete(this.orderURL + "/" + id);
+  }
+
 }

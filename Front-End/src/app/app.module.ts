@@ -40,10 +40,18 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { LandingComponent } from './components/landing/landing.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CommentsComponent } from './components/comments/comments.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthInterceptor } from './services/auth.interceptor.service';
+import { MatMenuModule } from '@angular/material/menu';
+import { ClientSpaceComponent } from './components/client-space/client-space.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ClientOrderTableComponent } from './components/client-order-table/client-order-table.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +78,11 @@ import { MatBadgeModule } from '@angular/material/badge';
     MenuCardComponent,
     LandingComponent,
     CommentsComponent,
+    ClientSpaceComponent,
+    ClientOrderTableComponent,
+    EditProfileComponent,
+    TopBarComponent,
+    NavBarComponent,
   ],
   imports: [
     NoopAnimationsModule,
@@ -94,9 +107,17 @@ import { MatBadgeModule } from '@angular/material/badge';
     ToastrModule.forRoot(),
     BrowserAnimationsModule ,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule,
+    MatPaginatorModule,
   ],
-  providers: [],
+  providers: [
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

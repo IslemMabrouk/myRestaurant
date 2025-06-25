@@ -16,13 +16,13 @@ public class PlatModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PLAT_ID")
-	
-	
 	private Long id;
 	private String name;
 	private String description;
 	private String category;
 	private int  price;
+	@Column(nullable = false)
+	private boolean active = true;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name = "user_id", referencedColumnName = "USER_ID")
@@ -67,6 +67,14 @@ public class PlatModel {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public boolean isActive() {
+	    return active;
+	}
+
+	public void setActive(boolean active) {
+	    this.active = active;
 	}
 
 	public UserModel getUser() {

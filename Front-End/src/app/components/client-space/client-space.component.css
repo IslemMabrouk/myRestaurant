@@ -1,0 +1,9 @@
+.cart-position{
+    margin-top: 10rem !important;
+    width: 1200px; 
+    margin-left: -130px;
+}
+
+::ng-deep .mat-tab-labels {
+  justify-content: flex-start !important;
+}

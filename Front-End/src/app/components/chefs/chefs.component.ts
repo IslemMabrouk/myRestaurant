@@ -10,7 +10,7 @@ export class ChefsComponent implements OnInit {
 
   chefs: any = [];
 
-  constructor(private userService : UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -19,17 +19,18 @@ export class ChefsComponent implements OnInit {
   loadUsers(): void {
     this.userService.getAllUsers().subscribe(
       (data: any) => {
-        console.log('Fetched users:', data);
-        this.chefs = data.filter((user: any) => user.role === 'chef');
+        this.chefs = data.filter((user: any) =>
+          user.roles.some((role: any) => role.name === 'ROLE_CHEF')
+        );
       },
       (error: any) => {
         console.error('Error fetching users:', error);
       }
     );
+
   }
-  
-  
-  
+
+
 
 }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Plat } from '../interfaces/Plat';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PlatService {
 
   //Destination Adresse // BE Server
-  platURL: string = 'http://localhost:9000/api/plats'
+  platURL = environment.BaseUrl + "/api/plats";
 
   constructor(private httpClient: HttpClient) { }
 

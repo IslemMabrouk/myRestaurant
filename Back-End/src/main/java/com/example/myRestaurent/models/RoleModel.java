@@ -19,7 +19,6 @@ public class RoleModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ROLE_ID")
-	
 	private Long id;
 	private String name;
 	   // Many-to-many relationship with UserModel
