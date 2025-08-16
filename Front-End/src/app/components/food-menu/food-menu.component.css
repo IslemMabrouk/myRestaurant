@@ -23,3 +23,11 @@
 ::ng-deep .mat-tab-header {
     border-bottom: none !important;
 }
+
+.menu-item {
+  margin-bottom: 2rem;
+}
+
+.btn_1:hover {
+  color: white;
+}

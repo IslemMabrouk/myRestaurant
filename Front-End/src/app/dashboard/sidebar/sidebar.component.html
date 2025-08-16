@@ -18,7 +18,7 @@
           <mat-icon class="me-2">show_chart</mat-icon> Dashboard
         </button>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="userInfo.roles == 'ROLE_ADMIN'">
         <button mat-button [routerLink]="'/usersTable'" class="text-white w-100 btn">
           <mat-icon class="me-2">groups</mat-icon> Users
         </button>

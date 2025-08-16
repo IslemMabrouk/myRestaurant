@@ -113,7 +113,7 @@ editUser(userId: number, role: string) {
   } else if (role === 'ROLE_CHEF') {
     this.router.navigate([`editChef/${userId}`]);
   } else {
-    this.router.navigate([`editChef/${userId}`]);
+    this.router.navigate([`editAdmin/${userId}`]);
   }
 }
 

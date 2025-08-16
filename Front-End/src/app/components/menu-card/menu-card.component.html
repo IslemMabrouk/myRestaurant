@@ -18,7 +18,7 @@
 </mat-card> -->
 
 <div id="menu" class="menu-item">
-  <img src="assets/img/food_item/food_item_1.png" alt="{{ item.name }}" id="menu-img">
+  <img [src]="getImageByCategory(item.category)" alt="{{ item.name }}" id="menu-img">
   
   <div class="menu-content">
     <a href="#">{{ item.name }}</a>

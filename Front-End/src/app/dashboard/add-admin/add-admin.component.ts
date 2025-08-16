@@ -17,6 +17,7 @@ export class AddAdminComponent implements OnInit {
   id: any;
   title!: string;
   user!: User;
+  userInfo!:any;
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +28,7 @@ export class AddAdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userInfo = this.authService.getUserInfo();
     this.id = this.activatedRoute.snapshot.paramMap.get('userId');
     this.userRole = ["ROLE_ADMIN"];
 
@@ -41,21 +43,19 @@ export class AddAdminComponent implements OnInit {
       experience: ["", [Validators.required, Validators.min(1)]],
     });
 
-    if (this.id) {
+    if (this.id && this.userInfo.roles == 'ROLE_ADMIN') {
+      console.log(this.loadUserByID());
+      
       // Edit mode
       this.title = 'Edit Admin';
-      const userInfo = this.authService.getUserInfo();
         this.addAdminForm.patchValue({
-          firstName: userInfo?.firstName || '',
-          lastName: userInfo?.lastName || '',
-          email: userInfo?.email || '',
-          phone: userInfo?.phone || '',
-          address: userInfo?.address || '',
-          experience: userInfo?.experience || ''
+          firstName: this.userInfo?.firstName || '',
+          lastName: this.userInfo?.lastName || '',
+          email: this.userInfo?.email || '',
+          phone: this.userInfo?.phone || '',
+          address: this.userInfo?.address || '',
+          experience: this.userInfo?.experience || ''
         });
-
-        // pwd should remain empty for security
-        this.addAdminForm.get('pwd')?.disable(); // Disable pwd in edit mode
     } else {
       // Add mode
       this.title = 'Add Admin';
@@ -101,13 +101,20 @@ export class AddAdminComponent implements OnInit {
     }
   }
 
-  
   resetReactiveForm(form: FormGroup) {
     form.reset();
     form.markAsPristine();
     form.markAsUntouched();
     Object.keys(form.controls).forEach(key => {
       form.get(key)?.setErrors(null);
+    });
+  }
+
+    loadUserByID(): void {
+    this.userService.getUserById(this.id).subscribe((data) => {
+      this.user = data;
+     console.log(this.user);
+     
     });
   }
 

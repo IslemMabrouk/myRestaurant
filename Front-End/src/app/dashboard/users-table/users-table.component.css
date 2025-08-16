@@ -22,8 +22,8 @@ mat-chip.role {
 }
 
 .chip-warning {
-  background-color: #ffc107 !important;
-  color: black !important;
+  background-color: red !important;
+  color: white !important;
   cursor: pointer;
 }
 

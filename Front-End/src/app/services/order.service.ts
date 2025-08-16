@@ -83,7 +83,7 @@ export class OrderService {
   // Clear the cart from localStorage
   clearCart() {
     localStorage.removeItem(this.cartKey);
-     this.totalQuantitySubject.next(0);
+    this.totalQuantitySubject.next(0);
   }
 
   private updateTotalQuantity() {
@@ -96,9 +96,10 @@ export class OrderService {
     return this.httpClient.post(this.orderURL, orderData);
   }
 
-  getAllOrders() {
-    return this.httpClient.get(this.orderURL);
+  getAllOrders(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.orderURL}`);
   }
+
 
   getOrdersByUserId(userId: number) {
     return this.httpClient.get<any>(`${this.orderURL}/user/${userId}`);
@@ -110,7 +111,7 @@ export class OrderService {
     return this.httpClient.put(`${this.orderURL}/${orderId}/status`, { status: newStatus });
   }
 
-    deleteOrderById(id: number) {
+  deleteOrderById(id: number) {
     return this.httpClient.delete(this.orderURL + "/" + id);
   }
 

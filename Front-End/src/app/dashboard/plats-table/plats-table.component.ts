@@ -28,20 +28,30 @@ export class PlatsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
+    console.log(this.userInfo);
+    
     this.loadPlats();
   }
 
   loadPlats(): void {
-    this.platService.getPlats().subscribe(
-      (data: any) => {
+  this.platService.getPlats().subscribe(
+    (data: any) => {
+      if (this.userInfo.roles.includes('ROLE_ADMIN')) {
+        // Admin can see all plats
         this.dataSource = new MatTableDataSource<any>(data);
-        this.dataSource.paginator = this.paginator;
-      },
-      (error: any) => {
-        console.error('Error fetching users:', error);
+      } else if (this.userInfo.roles.includes('ROLE_CHEF')) {
+        // Chef can only see their own plats
+        const filteredPlats = data.filter((plat:any) => plat.user.id === this.userInfo.id);
+        this.dataSource = new MatTableDataSource<any>(filteredPlats);
       }
-    );
-  }
+      this.dataSource.paginator = this.paginator;
+    },
+    (error: any) => {
+      console.error('Error fetching plats:', error);
+    }
+  );
+}
+
 
   openDialog(action: string, plat: any): void {
     // Placeholder for dialog logic

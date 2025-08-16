@@ -3,20 +3,27 @@
     <div class="row justify-content-between">
       <div class="col-lg-5">
         <div class="container section-title" data-aos="fade-up">
-        <h2>Menu</h2>
-        <p>Check Our Tasty Menu</p>
-      </div>
+          <h2>Menu</h2>
+          <p>Check Our Tasty Menu</p>
+        </div>
       </div>
       <div class="col-lg-12 tabs">
         <mat-tab-group>
           <mat-tab *ngFor="let category of categories" [label]="category">
             <div class="row isotope-container">
-              <div
-                class="col-lg-6 menu-item isotope-item filter-starters"
-                *ngFor="let plat of categorizedPlats[category]">
+              <div class="col-lg-6 menu-item isotope-item filter-starters"
+                *ngFor="let plat of categorizedPlats[category] | slice:0:itemsToShow[category]">
                 <app-menu-card [item]="plat"></app-menu-card>
               </div>
             </div>
+
+            <div class="text-center mt-3"
+              *ngIf="categorizedPlats[category] && itemsToShow[category] < categorizedPlats[category].length">
+              <button class="btn_1" (click)="showMore(category)">
+                Show More
+              </button>
+            </div>
+
           </mat-tab>
         </mat-tab-group>
       </div>
