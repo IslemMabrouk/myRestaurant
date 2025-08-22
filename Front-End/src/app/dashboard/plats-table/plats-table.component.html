@@ -4,11 +4,11 @@
 <mat-card-header style="display: contents">
   <mat-card-title class="d-flex justify-content-between align-items-center w-100">
     <h3 class="mb-0 d-flex align-items-center">
-      <span class="ms-2">Plats Management</span>
+      <span class="ms-2">Meals Management</span>
     </h3>
     <div class="d-flex align-items-center">
       <button mat-raised-button color="primary" (click)="addPlat()">
-        <mat-icon class="me-2">add</mat-icon>Add Plat
+        <mat-icon class="me-2">add</mat-icon>Add Meal
       </button>
     </div>
   </mat-card-title>
@@ -19,6 +19,11 @@
     <mat-card-content>
       <div class="table-responsive">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+          <!-- PLAT ID -->
+        <ng-container matColumnDef="platId">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let plat">{{ plat.id }}</td>
+        </ng-container>
           <!-- Columns Definitions -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>

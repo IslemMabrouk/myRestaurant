@@ -28,7 +28,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { OrdersTableComponent } from './orders-table/orders-table.component';
 import { AddPlatComponent } from './add-plat/add-plat.component';
 import { BestSellerComponent } from './best-seller/best-seller.component';
-import { ReviewComponent } from './review/review.component';
 import { CartSuccessDialogComponent } from './cart-success-dialog/cart-success-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddAdminComponent } from './add-admin/add-admin.component';
@@ -36,12 +35,15 @@ import { PlatsTableComponent } from './plats-table/plats-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { StatusChangeDialogComponent } from './status-change-dialog/status-change-dialog.component';
+import { ReviewTableComponent } from './review-table/review-table.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       { path: '', component: DashboardContentComponent },
       { path: 'usersTable', component: UsersTableComponent },
+      { path: 'reviewTable', component: ReviewTableComponent},
       { path: 'ordersTable', component: OrdersTableComponent },
       { path: 'platsTable', component: PlatsTableComponent },
       { path: 'bestSeller', component: BestSellerComponent },
@@ -70,11 +72,12 @@ const routes: Routes = [
     OrdersTableComponent,
     AddPlatComponent,
     BestSellerComponent,
-    ReviewComponent,
     CartSuccessDialogComponent,
     AddAdminComponent,
     PlatsTableComponent,
     StatusChangeDialogComponent,
+    ReviewTableComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     ReactiveFormsModule,

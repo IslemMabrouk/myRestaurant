@@ -18,13 +18,13 @@
                 <!-- Plat Name -->
                 <div class="col-sm-6">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Plat Name</mat-label>
-                    <input matInput formControlName="name" placeholder="Enter Plat Name">
+                    <mat-label>Meal Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Enter Meal Name">
                     <mat-error *ngIf="addPlatForm.get('name')?.hasError('required')">
-                      Plat Name is required
+                      Meal Name is required
                     </mat-error>
                     <mat-error *ngIf="addPlatForm.get('name')?.hasError('minlength')">
-                      Plat Name must have at least 3 chars
+                      Meal Name must have at least 3 chars
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -32,10 +32,10 @@
                 <!-- Plat Price -->
                 <div class="col-sm-6">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Plat Price</mat-label>
-                    <input matInput type="number" formControlName="price" placeholder="Enter Plat Price">
+                    <mat-label>Meal Price</mat-label>
+                    <input matInput type="number" formControlName="price" placeholder="Enter Meal Price">
                     <mat-error *ngIf="addPlatForm.get('price')?.hasError('required')">
-                      Plat Price is required
+                      Meal Price is required
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -43,14 +43,14 @@
                 <!-- Plat Category (Dropdown) -->
                 <div class="col-sm-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Plat Category</mat-label>
+                    <mat-label>Meal Category</mat-label>
                     <mat-select formControlName="category" placeholder="Select Category">
                       <mat-option value="Sandwich">Sandwich</mat-option>
                       <mat-option value="Burger">Burger</mat-option>
                       <mat-option value="Pizza">Pizza</mat-option>
                     </mat-select>
                     <mat-error *ngIf="addPlatForm.get('category')?.hasError('required')">
-                      Plat Category is required
+                      Meal Category is required
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -58,11 +58,11 @@
                 <!-- Plat Description -->
                 <div class="col-12">
                   <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Plat Description</mat-label>
+                    <mat-label>Meal Description</mat-label>
                     <textarea matInput formControlName="description" placeholder="Enter Description"
                       rows="4"></textarea>
                     <mat-error *ngIf="addPlatForm.get('description')?.hasError('required')">
-                      Plat Description is required
+                      Meal Description is required
                     </mat-error>
                   </mat-form-field>
                 </div>

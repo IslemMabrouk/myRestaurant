@@ -39,11 +39,11 @@ export class AddPlatComponent implements OnInit {
 
     if (this.platId) {
       // Edit mode
-      this.title = 'Edit Plat';
+      this.title = 'Edit Meal';
       this.loadPlatDetails(this.platId);
     } else {
       // Add mode
-      this.title = 'Add Plat';
+      this.title = 'Add Meal';
     }
   }
 

@@ -39,7 +39,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { LandingComponent } from './components/landing/landing.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { CommentsComponent } from './components/comments/comments.component';
+import { CommentsComponent } from './components/add-review/add-review.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -52,6 +52,7 @@ import { ClientOrderTableComponent } from './components/client-order-table/clien
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatTabsModule,
     DashboardModule,
     MatSidenavModule,
+    MatSnackBarModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule ,

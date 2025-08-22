@@ -10,12 +10,20 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
   userInfo: any;
+  role:any;
+
   constructor(private authService: AuthService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
+    if (this.userInfo.roles.includes('ROLE_CHEF')) {
+      this.role = 'CHEF'
+    }
+    else {
+      this.role = 'ADMIN'
+    }
   }
 
   logout() {

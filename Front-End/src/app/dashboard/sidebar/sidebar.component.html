@@ -2,18 +2,15 @@
   <mat-sidenav #sidenav mode="side" opened class="sidenav bg-primary text-white" style="width: 250px;">
     <!-- Header with Admin Panel and Toggle -->
     <div class="d-flex align-items-center justify-content-between mb-3 text-white adminPanel">
-      <span class="fs-4">Admin Panel</span>
-      <mat-slide-toggle
-        class="text-white"
-        color="accent"
-        (change)="toggleDarkMode($event.checked)">
+      <span class="fs-4">{{role}} Panel</span>
+      <mat-slide-toggle class="text-white" color="accent" (change)="toggleDarkMode($event.checked)">
       </mat-slide-toggle>
     </div>
     <mat-divider class="bg-white"></mat-divider>
 
     <!-- Navigation List -->
     <mat-nav-list>
-      <mat-list-item>
+      <mat-list-item  *ngIf="userInfo.roles == 'ROLE_ADMIN'">
         <button mat-button [routerLink]="'/dashboard'" class="text-white w-100 btn">
           <mat-icon class="me-2">show_chart</mat-icon> Dashboard
         </button>
@@ -29,8 +26,13 @@
         </button>
       </mat-list-item>
       <mat-list-item>
+        <button mat-button [routerLink]="'/reviewTable'" class="text-white w-100 btn">
+          <mat-icon class="me-2">rate_review</mat-icon> Reviews
+        </button>
+      </mat-list-item>
+      <mat-list-item>
         <button mat-button [routerLink]="'/platsTable'" class="text-white w-100 btn">
-          <mat-icon class="me-2">restaurant_menu</mat-icon> Plats
+          <mat-icon class="me-2">restaurant_menu</mat-icon> Meals
         </button>
       </mat-list-item>
       <mat-list-item>

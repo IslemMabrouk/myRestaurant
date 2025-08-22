@@ -1,0 +1,57 @@
+.review-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    gap: .5rem;
+    border-top: 1px dashed #ddd;
+}
+
+.avatar-icon {
+    font-size: 40px;
+    /* bigger avatar */
+    margin-right: 10px;
+}
+
+.avatar-icon {
+    background-color: #3f51b5;
+    /* Material Indigo */
+    color: white;
+    border-radius: 50%;
+    padding: .5rem;
+    font-size: 3rem;
+    height: 4rem;
+    width: 4rem;
+}
+
+.review {
+    min-width: 25rem !important;
+}
+
+.star {
+    color: #ff6426;
+}
+
+.review-info {
+    padding-top: .5rem;
+    display: flex;
+    gap: .5rem;
+}
+
+.review-name {
+    font-weight: 900;
+}
+
+.icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.actions {
+    display: none;
+    margin-left: auto;
+}
+
+.d-flex:hover .actions {
+    display: flex;
+}

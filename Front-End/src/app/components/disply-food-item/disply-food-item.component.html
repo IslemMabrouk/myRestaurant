@@ -4,7 +4,7 @@
       <div class="col-lg-6">
         <mat-card>
           <a href="#">
-            <img mat-card-image src="assets/img/food_item/food_item_2.png"  alt="Image">
+            <img mat-card-image src="assets/img/food_item/food_item_2.png" alt="Image">
           </a>
         </mat-card>
       </div>
@@ -14,30 +14,27 @@
             <h2 class="fw-bold fw-uppercase">{{plat.name}}</h2>
           </mat-card-title>
           <mat-card-content>
-            <p class="fw-uppercase">Category: <span class="fw-bold">{{plat.category}}</span > </p>
+            <p class="fw-uppercase">Category: <span class="fw-bold">{{plat.category}}</span> </p>
             <h4 class="fw-bold">{{plat.price}} $</h4>
             <div class="d-flex mb-4">
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon>star_half</mat-icon>
+              <mat-icon *ngFor="let star of getStars()">{{ star }}</mat-icon>
             </div>
+
             <p>{{plat.description}}</p>
             <div class="quantity-wrapper">
               <button mat-icon-button color="primary" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
                 <mat-icon>remove</mat-icon>
               </button>
-            
+
               <mat-form-field appearance="outline" style="width: 60px; text-align: center;">
                 <input matInput type="number" [(ngModel)]="quantity" [min]="1" readonly>
               </mat-form-field>
-            
+
               <button mat-icon-button color="primary" (click)="increaseQuantity()">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
-            
+
             <button mat-raised-button color="primary" class="btn" (click)="goToCheckout()">Add to cart</button>
           </mat-card-content>
         </mat-card>
@@ -54,12 +51,11 @@
 
       </mat-tab>
       <mat-tab label="Reviews">
-        <app-review></app-review>
+        <app-review #reviewsComponent [plat]="plat" (editReviewEvent)="onReviewEdit($event)"></app-review>
       </mat-tab>
 
     </mat-tab-group>
-
-    <app-comments></app-comments>
-
+    <app-add-review [plat]="plat" [reviewToEdit]="selectedReview"
+      (reviewChanged)="onReviewChanged($event)"></app-add-review>
   </div>
 </div>

@@ -9,12 +9,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent implements OnInit {
   userInfo:any;
+  role:any;
 
   constructor(private router:Router,private authService: AuthService) { }
   isDarkMode: boolean = false;
 
   ngOnInit(): void {
     this.userInfo = this.authService.getUserInfo();
+    if (this.userInfo.roles.includes('ROLE_CHEF')) {
+      this.role = 'Chef'
+    }
+    else {
+      this.role = 'Admin'
+    }
   }
 
   goToUserManagment(){

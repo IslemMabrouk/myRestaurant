@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { UserService } from 'src/app/services/user.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-users-table',
@@ -85,37 +86,44 @@ export class UsersTableComponent implements OnInit {
   }
 
   getStatuStyle(status: string): [string, string] {
-  switch (status) {
-    case 'ROLE_ADMIN':
-      return ['admin', 'chip-warning'];
-    case 'ROLE_CHEF':
-      return ['Chef', 'chip-success'];
-    default:
-      return ['client', 'chip-default'];
+    switch (status) {
+      case 'ROLE_ADMIN':
+        return ['admin', 'chip-warning'];
+      case 'ROLE_CHEF':
+        return ['Chef', 'chip-success'];
+      default:
+        return ['client', 'chip-default'];
+    }
   }
-}
 
-getChipClass(status: string): string {
-  return this.getStatuStyle(status)[1];
-}
-
+  getChipClass(status: string): string {
+    return this.getStatuStyle(status)[1];
+  }
 
   deleteUser(userId: number): void {
-    this.userService.deleteUserById(userId).subscribe(
-      (data) => {
-        this.loadUsers();
-      });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: { message: 'Are you sure you want to delete this user?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.userService.deleteUserById(userId).subscribe(() => {
+          this.loadUsers();
+        });
+      }
+    });
   }
 
-editUser(userId: number, role: string) {
-  if (role === 'ROLE_ADMIN') {
-    this.router.navigate([`editAdmin/${userId}`]);
-  } else if (role === 'ROLE_CHEF') {
-    this.router.navigate([`editChef/${userId}`]);
-  } else {
-    this.router.navigate([`editAdmin/${userId}`]);
+  editUser(userId: number, role: string) {
+    if (role === 'ROLE_ADMIN') {
+      this.router.navigate([`editAdmin/${userId}`]);
+    } else if (role === 'ROLE_CHEF') {
+      this.router.navigate([`editChef/${userId}`]);
+    } else {
+      this.router.navigate([`editAdmin/${userId}`]);
+    }
   }
-}
 
   addPlate(userId: number): void {
     this.router.navigate([`addPlat/${userId}`])

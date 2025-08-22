@@ -71,7 +71,7 @@ body {
     background: linear-gradient(90deg, #2c3e50, #4a69bd); /* Dark gradient */
   }
   
-  body.dark-mode .card {
+  body.dark-mode .card ,  body.dark-mode .mat-paginator,  body.dark-mode .mat-select-value{
     background-color: #495057; /* Dark card background */
     color: #ffffff;
   }

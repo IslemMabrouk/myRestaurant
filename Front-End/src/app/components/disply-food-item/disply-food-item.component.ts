@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CartSuccessDialogComponent } from 'src/app/dashboard/cart-success-dialog/cart-success-dialog.component';
 import { Plat } from 'src/app/interfaces/Plat';
 import { PlatService } from 'src/app/services/plat.service';
 import { OrderService } from 'src/app/services/order.service';
+import { ReviewComponent } from '../review/review.component';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-disply-food-item',
@@ -16,12 +18,18 @@ export class DisplyFoodItemComponent implements OnInit {
   platId: any;
   plat: Plat = new Plat();
   quantity: number = 1;
+  selectedReview: any;
+  @ViewChild('reviewsComponent', { static: false }) reviewsComponent!: ReviewComponent;
+  pendingReview: any = null;
+  reviews: any[] = [];
+  averageRating: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private platService: PlatService,
-    private orderService: OrderService // Inject OrderService
+    private orderService: OrderService,
+    private reviewService: ReviewService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +38,42 @@ export class DisplyFoodItemComponent implements OnInit {
     this.platService.getPlatById(this.platId).subscribe((data) => {
       this.plat = data;
     });
+
+    this.reviewService.getAllReviews().subscribe(
+    (data: any[]) => {
+      this.reviews = data.filter(r => r.plat?.id === this.plat.id);
+
+      if (this.reviews.length > 0) {
+        const sum = this.reviews.reduce((acc, r) => acc + r.rating, 0);
+        this.averageRating = sum / this.reviews.length;
+      }
+    },
+    (error: any) => {
+      console.error('Error fetching users:', error);
+    }
+  );
   }
+
+  getStars(): string[] {
+  const stars: string[] = [];
+  const fullStars = Math.floor(this.averageRating);
+  const hasHalfStar = this.averageRating % 1 >= 0.5;
+
+  for (let i = 0; i < fullStars; i++) {
+    stars.push('star'); // full star
+  }
+
+  if (hasHalfStar) {
+    stars.push('star_half'); // half star
+  }
+
+  while (stars.length < 5) {
+    stars.push('star_border'); // empty star
+  }
+
+  return stars;
+}
+
 
   increaseQuantity() {
     this.quantity++;
@@ -62,4 +105,32 @@ export class DisplyFoodItemComponent implements OnInit {
       }
     });
   }
+
+  onReviewEdit(review: any) {
+    this.selectedReview = review;
+  }
+
+  onReviewChanged(event: { review: any, resetEditingId?: boolean }) {
+    if (event.review) {
+      this.reviewsComponent.updateReviewList(event.review);
+
+      // Reset editingReviewId if needed
+      if (event.resetEditingId) {
+        this.reviewsComponent.editingReviewId = null;
+      }
+    } else {
+      // If the child is not ready yet, store it
+      this.pendingReview = event.review;
+    }
+  }
+
+  // AfterViewInit, flush any pending review
+  ngAfterViewInit(): void {
+    if (this.pendingReview) {
+      this.reviewsComponent.updateReviewList(this.pendingReview);
+      this.pendingReview = null;
+    }
+
+  }
+
 }
