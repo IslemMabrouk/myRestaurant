@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { OrderService } from 'src/app/services/order.service';
 import { StatusChangeDialogComponent } from '../status-change-dialog/status-change-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-orders-table',
@@ -117,11 +118,19 @@ export class OrdersTableComponent implements OnInit {
   }
 
 
-  deleteOrder(orderId: number): void {
-    this.orderService.deleteOrderById(orderId).subscribe(
-      (data) => {
-        this.loadOrders();
+  deleteOrder(orderId: number) {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '350px',
+        data: { message: 'Are you sure you want to delete this order?' }
       });
-  }
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.orderService.deleteOrderById(orderId).subscribe(() => {
+            this.loadOrders();
+          });
+        }
+      });
+    }
 
 }

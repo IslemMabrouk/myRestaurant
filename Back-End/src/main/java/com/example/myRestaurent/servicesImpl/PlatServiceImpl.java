@@ -6,22 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.myRestaurent.models.OrderItemModel;
 import com.example.myRestaurent.models.PlatModel;
-import com.example.myRestaurent.models.UserModel;
-import com.example.myRestaurent.repositories.OrderItemRepository;
 import com.example.myRestaurent.repositories.PlatRepository;
 import com.example.myRestaurent.services.PlatService;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
 public class PlatServiceImpl implements PlatService {
 	@Autowired
 	private PlatRepository pRepo;
-	@Autowired
-	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public PlatModel addPlat(PlatModel obj) {

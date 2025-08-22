@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.myRestaurent.models.OrderItemModel;
 import com.example.myRestaurent.models.OrderModel;
-import com.example.myRestaurent.models.UserModel;
 import com.example.myRestaurent.repositories.OrderRepository;
 import com.example.myRestaurent.services.OrderService;
 

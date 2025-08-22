@@ -19,12 +19,17 @@ import org.springframework.http.HttpStatus;
 
 import com.example.myRestaurent.models.OrderModel;
 import com.example.myRestaurent.services.OrderService;
+import com.example.myRestaurent.servicesImpl.EmailServiceImpl;
 
 @RestController
 @RequestMapping("api/orders")
 public class OrderController {
 	@Autowired
 	private OrderService oService;
+
+	@Autowired
+	private EmailServiceImpl emailService;
+
 	
 	@PostMapping
 	public ResponseEntity<OrderModel> addOrder(@RequestBody OrderModel o) {
@@ -38,7 +43,7 @@ public class OrderController {
 	private OrderModel updateOrder(@RequestBody OrderModel o) {
 		return oService.updateOrder(o);
 	}
-
+	
 	@PutMapping("/{id}/status")
 	public ResponseEntity<?> updateOrderStatus(@PathVariable Long id, @RequestBody Map<String, String> body) {
 	    String newStatus = body.get("status");
@@ -48,6 +53,17 @@ public class OrderController {
 	        OrderModel order = optionalOrder.get();
 	        order.setStatus(newStatus);
 	        oService.save(order);
+
+	        if ("completed".equalsIgnoreCase(newStatus)) {
+	            String message = "Hello " + order.getUser().getFirstName() +
+	                             ", your order #" + order.getId() + " is on its way!";
+
+	            // Email notification
+	            emailService.sendEmail(order.getUser().getEmail(),
+	                                   "Order Completed",
+	                                   message);
+	        }
+
 	        return ResponseEntity.ok(order);
 	    } else {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found");
