@@ -47,6 +47,7 @@ import { AuthInterceptor } from './services/auth.interceptor.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { ClientSpaceComponent } from './components/client-space/client-space.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ClientOrderTableComponent } from './components/client-order-table/client-order-table.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
@@ -55,6 +56,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NotConnectedDialogComponent } from './shared/not-connected-dialog/not-connected-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { CommonModule } from '@angular/common';
+import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +89,7 @@ import { CommonModule } from '@angular/common';
     TopBarComponent,
     NavBarComponent,
     NotConnectedDialogComponent,
+    LoaderComponent,
   ],
   imports: [
     NoopAnimationsModule,
@@ -114,6 +118,7 @@ import { CommonModule } from '@angular/common';
     MatBadgeModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     CommonModule,
     MatDialogModule
 ],
@@ -121,6 +126,11 @@ import { CommonModule } from '@angular/common';
      {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptorService,
       multi: true
     }
   ],

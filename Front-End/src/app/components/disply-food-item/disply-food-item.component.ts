@@ -60,6 +60,19 @@ export class DisplyFoodItemComponent implements OnInit {
   );
   }
 
+  getImageByCategory(category:any): string {
+  switch (category) {
+    case 'Burger':
+      return 'assets/img/food_item/food_item_1.png';
+    case 'Pizza':
+      return 'assets/img/food_item/food_item_4.png';
+    case 'Sandwich':
+      return 'assets/img/food_item/food_item_5.jpeg';
+    default:
+      return 'assets/img/food_item/default.png';
+  }
+}
+
   getStars(): string[] {
   const stars: string[] = [];
   const fullStars = Math.floor(this.averageRating);

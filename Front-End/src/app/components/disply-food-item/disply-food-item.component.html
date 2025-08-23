@@ -4,7 +4,7 @@
       <div class="col-lg-6">
         <mat-card>
           <a href="#">
-            <img mat-card-image src="assets/img/food_item/food_item_2.png" alt="Image">
+            <img mat-card-image [src]="getImageByCategory(plat.category)" alt="{{ plat.name }}" alt="Image">
           </a>
         </mat-card>
       </div>
