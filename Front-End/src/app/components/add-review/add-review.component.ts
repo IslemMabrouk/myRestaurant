@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Plat } from 'src/app/interfaces/Plat';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { NotConnectedDialogComponent } from 'src/app/shared/not-connected-dialog/not-connected-dialog.component';
 
 @Component({
   selector: 'app-add-review',
@@ -34,7 +36,8 @@ export class CommentsComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
     private authService: AuthService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +58,13 @@ export class CommentsComponent implements OnInit {
   }
 
 submitReview(form: any) {
+   if (!this.authService.getUserId()) {
+      // Open "not connected" dialog
+      this.dialog.open(NotConnectedDialogComponent, {
+        width: '400px',
+      });
+      return; // Stop further execution
+    }
   if (!this.comments.review || this.rating === 0) {
     this.snackBar.open('Please provide both review and rating', '', { duration: this.snackBarDuration });
     return;

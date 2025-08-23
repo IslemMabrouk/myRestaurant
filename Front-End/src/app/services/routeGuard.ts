@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { DialogService } from '../services/dialog.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class routeGuard implements CanActivate {
+export class RouteGuard implements CanActivate {
+  constructor(
+    private authService: AuthService,
+    private dialogService: DialogService
+  ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    // Example condition: Checking if 'headerVisible' is true in route data
-    return route.data['headerVisible'] || false;
+    // Check if logged in
+    const isLoggedIn = !!this.authService.getDecodedToken();
+
+    if (!isLoggedIn) {
+      this.dialogService.openNotConnectedDialog();
+      return false; // block navigation
+    }
+
+    // Optional: keep your route.data check
+    if (route.data['headerVisible'] !== undefined) {
+      return route.data['headerVisible'];
+    }
+
+    return true;
   }
 }

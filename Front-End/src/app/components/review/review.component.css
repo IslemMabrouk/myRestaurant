@@ -55,3 +55,24 @@
 .d-flex:hover .actions {
     display: flex;
 }
+
+.no-review-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.no-review-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #1976d2; /* Material primary color */
+}
+
+.no-review-text {
+  font-size: 16px;
+  color: #555;
+}

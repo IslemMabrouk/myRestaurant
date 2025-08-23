@@ -73,8 +73,37 @@ img {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
 }
 
+a {
+    display: flex;
+    align-items: center;
+}
+
 @media only screen and (min-width: 1200px) and (max-width: 3640px) {
     .container {
         max-width: 100%;
     }
+}
+
+/* CSS that applies only if the viewport is 900px or wider */
+@media (max-width: 990px) {
+  .logo {
+    display: none;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.container {
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.menu_btn {
+    margin-left:auto;
+}
+
 }

@@ -38,10 +38,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/users/**").permitAll()
+			    .requestMatchers("/api/orders/**").permitAll()
 			    .requestMatchers("/ws/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/plats/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
-			    .requestMatchers(HttpMethod.PUT,"/api/orders/**").permitAll()
 				.anyRequest().authenticated()).sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

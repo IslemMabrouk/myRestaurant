@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { OrderService } from 'src/app/services/order.service';
 import { StatusChangeDialogComponent } from '../status-change-dialog/status-change-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-orders-table',

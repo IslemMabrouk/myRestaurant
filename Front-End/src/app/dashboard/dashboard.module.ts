@@ -36,7 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { StatusChangeDialogComponent } from './status-change-dialog/status-change-dialog.component';
 import { ReviewTableComponent } from './review-table/review-table.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 const routes: Routes = [
   {

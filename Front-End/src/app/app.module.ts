@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { AboutComponent } from './components/about/about.component';
 import { FoodMenuComponent } from './components/food-menu/food-menu.component';
@@ -53,11 +52,13 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NotConnectedDialogComponent } from './shared/not-connected-dialog/not-connected-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     BannerComponent,
     AboutComponent,
     FoodMenuComponent,
@@ -84,6 +85,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     EditProfileComponent,
     TopBarComponent,
     NavBarComponent,
+    NotConnectedDialogComponent,
   ],
   imports: [
     NoopAnimationsModule,
@@ -107,12 +109,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule ,
+    BrowserAnimationsModule,
     MatTooltipModule,
     MatBadgeModule,
     MatMenuModule,
     MatPaginatorModule,
-  ],
+    CommonModule,
+    MatDialogModule
+],
   providers: [
      {
       provide: HTTP_INTERCEPTORS,

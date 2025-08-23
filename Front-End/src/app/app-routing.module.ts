@@ -37,8 +37,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren:() => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-    // canActivate: [routeGuard],  // Apply the guard here
-
   }
 ];
 

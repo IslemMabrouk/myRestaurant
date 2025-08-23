@@ -7,6 +7,9 @@ import { PlatService } from 'src/app/services/plat.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ReviewComponent } from '../review/review.component';
 import { ReviewService } from 'src/app/services/review.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotConnectedDialogComponent } from 'src/app/shared/not-connected-dialog/not-connected-dialog.component';
 
 @Component({
   selector: 'app-disply-food-item',
@@ -23,16 +26,19 @@ export class DisplyFoodItemComponent implements OnInit {
   pendingReview: any = null;
   reviews: any[] = [];
   averageRating: number = 0;
+  userInfo:any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
     private platService: PlatService,
     private orderService: OrderService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.userInfo = this.authService.getUserInfo();
     this.platId = this.activatedRoute.snapshot.paramMap.get('platId');
 
     this.platService.getPlatById(this.platId).subscribe((data) => {
@@ -86,6 +92,13 @@ export class DisplyFoodItemComponent implements OnInit {
   }
 
   goToCheckout(): void {
+    if (!this.authService.getUserId()) {
+    // Open "not connected" dialog
+    this.dialog.open(NotConnectedDialogComponent, {
+      width: '400px',
+    });
+    return; // Stop further execution
+  }
     // Add plat and quantity to the cart
     this.orderService.addToCart(this.plat, this.quantity);
 
